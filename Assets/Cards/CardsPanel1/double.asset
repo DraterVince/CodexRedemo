@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 508a9f75aac78044a9c1ffeec03b4d58, type: 3}
+  m_Name: double
+  m_EditorClassIdentifier: 
+  cardName: double
+  cardID: 4010
+  unlockLevel: 0
+  cardImage: {fileID: 0}
+  cardColor: {r: 1, g: 1, b: 1, a: 1}
+  cardDescription: Is a primitive data type that stores positive and negative numbers.
+    Can store decimal numbers with 15 to 16 decimal digits.
+  cardExample: double x = 283.9183922831d; double y = 122.000001d;
+  cardType: 
+  cardValue: 0
+  isUnlocked: 0

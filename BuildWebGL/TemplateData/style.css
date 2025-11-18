@@ -1,0 +1,44 @@
+/* Hide Unity WebGL Logo and Watermark */
+#unity-webgl-logo {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+#unity-footer {
+    display: none !important;
+}
+
+/* Hide fullscreen button text */
+#unity-fullscreen-button {
+    display: none !important;
+}
+
+/* Hide build title */
+#unity-build-title {
+    display: none !important;
+}
+
+/* Make canvas take full container */
+#unity-canvas {
+    width: 100%;
+    height: 100%;
+}
+
+#unity-container {
+ width: 100%;
+    height: 100%;
+}
+
+/* Alternative: Keep footer but hide just the logo */
+/*
+#unity-footer {
+    display: flex !important;
+}
+
+#unity-webgl-logo {
+display: none !important;
+}
+*/

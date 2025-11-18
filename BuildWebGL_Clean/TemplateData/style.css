@@ -1,0 +1,158 @@
+html, body { 
+    padding: 0; 
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#unity-container { 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#unity-container.unity-desktop { 
+    left: 50%; 
+    top: 50%; 
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+}
+
+#unity-container.unity-mobile { 
+    width: 100%; 
+    height: 100%;
+    transform: none;
+    left: 0;
+    top: 0;
+}
+
+#unity-canvas { 
+    background: #231F20;
+    display: block;
+}
+
+.unity-mobile #unity-canvas { 
+    width: 100%; 
+    height: 100%;
+}
+
+#unity-loading-bar { 
+    position: absolute; 
+    left: 50%; 
+    top: 50%; 
+    transform: translate(-50%, -50%); 
+    display: none;
+    z-index: 1000;
+}
+
+#unity-logo { 
+    width: 154px; 
+    height: 130px; 
+    background: #1a1a1a;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-family: arial;
+    font-size: 24px;
+}
+
+#unity-logo::before {
+    content: "Loading...";
+}
+
+#unity-progress-bar-empty { 
+    width: 141px; 
+    height: 18px; 
+    margin-top: 10px; 
+    background: #2d2d2d;
+    border-radius: 9px;
+    border: 2px solid #444;
+}
+
+#unity-progress-bar-full { 
+    width: 0%; 
+    height: 18px; 
+    margin-top: 10px; 
+    background: linear-gradient(90deg, #4CAF50, #45a049);
+    border-radius: 9px;
+    transition: width 0.3s ease;
+}
+
+#unity-footer { 
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 38px;
+    z-index: 100;
+    background: rgba(0,0,0,0.8);
+}
+
+.unity-mobile #unity-footer { 
+    display: none;
+}
+
+#unity-webgl-logo { 
+    float: left; 
+    width: 204px; 
+    height: 38px; 
+    line-height: 38px;
+    padding-left: 10px;
+    color: #fff;
+    font-family: arial;
+    font-size: 14px;
+}
+
+#unity-webgl-logo::before {
+    content: "WebGL Game";
+}
+
+#unity-build-title { 
+    float: right; 
+    margin-right: 10px; 
+    line-height: 38px; 
+    font-family: arial; 
+    font-size: 18px;
+    color: #fff;
+}
+
+#unity-fullscreen-button { 
+    float: right; 
+    width: 38px; 
+    height: 38px; 
+    line-height: 38px;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+#unity-fullscreen-button::before {
+    content: "?";
+}
+
+#unity-fullscreen-button:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+#unity-warning { 
+    position: fixed; 
+    left: 50%; 
+    top: 5%; 
+    transform: translate(-50%, 0); 
+    background: white; 
+    padding: 10px; 
+    display: none;
+    z-index: 1001;
+    max-width: 80%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}

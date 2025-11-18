@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 508a9f75aac78044a9c1ffeec03b4d58, type: 3}
+  m_Name: if
+  m_EditorClassIdentifier: 
+  cardName: if
+  cardID: 4019
+  unlockLevel: 0
+  cardImage: {fileID: 0}
+  cardColor: {r: 1, g: 1, b: 1, a: 1}
+  cardDescription: If statements are conditionals that rely on certain conditions
+    to be met before executing the code with in them.
+  cardExample: "If (2 == 2) {\r\n\t\tSystem.out.println(\u201C2 is 2\u201D);\r\n\t}\r\n\t\tThis
+    code will print \u201C2 is 2\u201D because 2 is equals to 2.\r"
+  cardType: 
+  cardValue: 0
+  isUnlocked: 0

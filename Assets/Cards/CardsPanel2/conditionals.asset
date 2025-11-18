@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 508a9f75aac78044a9c1ffeec03b4d58, type: 3}
+  m_Name: conditionals
+  m_EditorClassIdentifier: 
+  cardName: '"<", "=", ">"'
+  cardID: 4021
+  unlockLevel: 0
+  cardImage: {fileID: 0}
+  cardColor: {r: 1, g: 1, b: 1, a: 1}
+  cardDescription: These are conditionals, greater than, less than, equal, equal
+    to or less than and less than or equal to.
+  cardExample: "9>10, 10 = 10, int C == int A\r\n\t\tWe use double \u2018=\u2019
+    to compare two objects, in Java int C and int A are objects, so we use \u2018==\u2019
+    to compare them\u2019\r\n"
+  cardType: 
+  cardValue: 0
+  isUnlocked: 0
