@@ -36,6 +36,10 @@ public class MusicManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            if (transform.parent != null)
+            {
+                transform.SetParent(null, true);
+            }
             DontDestroyOnLoad(gameObject);
             
             // Create AudioSource if not assigned
@@ -46,8 +50,11 @@ public class MusicManager : MonoBehaviour
                 musicSource.playOnAwake = false;
                 musicSource.volume = 1f; // Set default volume to 1.0
             }
-            
-            // Ensure AudioVolumeHelper stores original volume (1.0) - cache GetComponent
+
+            // Route to Music mixer group if available (after SettingsManager is likely initialized)
+            EnsureRouted();
+           
+           // Ensure AudioVolumeHelper stores original volume (1.0) - cache GetComponent
             AudioVolumeHelper volumeHelper = musicSource.GetComponent<AudioVolumeHelper>();
             if (volumeHelper == null)
             {
@@ -76,6 +83,8 @@ public class MusicManager : MonoBehaviour
 
     private void Start()
     {
+        // Second-chance routing in case SettingsManager initialized after Awake
+        EnsureRouted();
         // Ensure AudioVolumeHelper is set up with original volume
         if (musicSource != null)
         {
@@ -110,6 +119,9 @@ public class MusicManager : MonoBehaviour
     
     private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
     {
+        // Ensure the music source is routed to the correct mixer group after a scene change
+        EnsureRouted();
+
         // Re-register with SettingsManager when a new scene loads
         // This ensures the AudioSource is registered and volume is applied
         if (SettingsManager.Instance != null && musicSource != null)
@@ -152,6 +164,27 @@ public class MusicManager : MonoBehaviour
         AudioClip musicToPlay = menuMusic != null ? menuMusic : battleMusic;
         if (musicToPlay == null)
         {
+            return;
+        }
+
+        PlayMusic(musicToPlay, true);
+    }
+
+    /// <summary>
+    /// Ensure menu music is playing, but do not restart if the same menu track is already playing.
+    /// Use this in scenes where you want continuous background music across transitions.
+    /// </summary>
+    public void PlayMenuMusicIfNotPlaying()
+    {
+        AudioClip musicToPlay = menuMusic != null ? menuMusic : battleMusic;
+        if (musicToPlay == null)
+        {
+            return;
+        }
+
+        if (currentMusicClip == musicToPlay && isPlaying && musicSource != null && musicSource.isPlaying)
+        {
+            // Already playing the same track; do nothing to avoid a restart
             return;
         }
 
@@ -285,6 +318,16 @@ public class MusicManager : MonoBehaviour
     public AudioSource GetMusicSource()
     {
         return musicSource;
+    }
+
+    /// <summary>
+    /// Ensure the music AudioSource is routed to the Music mixer group if available.
+    /// Safe to call multiple times.
+    /// </summary>
+    public void EnsureRouted()
+    {
+        if (musicSource == null) return;
+        SettingsManager.RouteMusic(musicSource);
     }
 }
 

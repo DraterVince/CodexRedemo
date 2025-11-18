@@ -1,0 +1,74 @@
+# Rovo Dev Configuration for CodexRedemo Unity Project
+
+# Project-specific settings
+project:
+  name: "CodexRedemo"
+  type: "Unity WebGL Game"
+  description: "Turn-based card game with multiplayer support"
+
+# File patterns to watch/ignore
+files:
+  # Important file extensions for this Unity project
+  watch:
+    - "*.cs"           # C# scripts
+    - "*.unity"        # Unity scenes
+    - "*.prefab"       # Unity prefabs
+    - "*.asset"        # ScriptableObjects and assets
+    - "*.json"         # Configuration files
+    - "*.md"           # Documentation
+    - "*.anim"         # Animation files
+    - "*.controller"   # Animator controllers
+  
+  # Patterns to ignore (beyond default .gitignore)
+  ignore:
+    - "Library/"       # Unity's cache directory
+    - "Temp/"          # Unity's temporary files
+    - "Obj/"           # Build output
+    - "Build/"         # Build directory
+    - "Builds/"        # Build directory
+    - "Logs/"          # Unity logs
+    - "*.meta"         # Unity meta files (usually auto-generated)
+    - "UserSettings/"  # User-specific Unity settings
+
+# Context for better AI assistance
+context:
+  # Key documentation files to reference
+  documentation:
+    - "MASTER_INDEX.md"
+    - "AGENTS.md"
+    - "README.md"
+  
+  # Important directories
+  mainCodePath: "Assets/Scripts"
+  testPath: null  # No automated tests currently
+  
+  # Technologies used
+  technologies:
+    - "Unity 2022.x"
+    - "C# .NET"
+    - "Photon Unity Networking"
+    - "Supabase"
+    - "TextMesh Pro"
+    - "WebGL"
+
+# Smart suggestions for common tasks
+smartTasks:
+  enabled: true
+  customPatterns:
+    - pattern: "TODO:"
+      category: "todo"
+    - pattern: "FIXME:"
+      category: "bug"
+    - pattern: "HACK:"
+      category: "technical-debt"
+    - pattern: "NOTE:"
+      category: "documentation"
+
+# Agent behavior hints
+agentHints:
+  # Remind agent about Unity-specific considerations
+  unitySpecific: true
+  # This is a game project, so visual/gameplay testing is important
+  requiresManualTesting: true
+  # WebGL build has special considerations
+  targetPlatform: "WebGL"

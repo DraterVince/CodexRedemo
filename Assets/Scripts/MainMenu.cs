@@ -33,7 +33,8 @@ public class MainMenu : MonoBehaviour
         // Start menu music using MusicManager
         if (MusicManager.Instance != null)
         {
-            MusicManager.Instance.PlayMenuMusic(); // Uses menuMusic if assigned, otherwise uses battleMusic
+            // Use non-interrupting version so music continues between menu scenes
+            MusicManager.Instance.PlayMenuMusicIfNotPlaying(); // Uses menuMusic if assigned, otherwise uses battleMusic
         }
     }
     

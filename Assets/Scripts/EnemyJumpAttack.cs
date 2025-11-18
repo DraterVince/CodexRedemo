@@ -71,10 +71,13 @@ public float attackDistance = 1.5f;
                 audioSource = gameObject.AddComponent<AudioSource>();
                 audioSource.playOnAwake = false;
                 audioSource.spatialBlend = 0f; // 2D sound
-            }
-        }
-        
-        // Register audio source with SettingsManager for volume control
+           }
+       }
+       
+       // Route to SFX mixer group if available
+       SettingsManager.RouteSFX(audioSource);
+       
+       // Register audio source with SettingsManager for volume control
         if (audioSource != null && SettingsManager.Instance != null)
         {
             SettingsManager.RegisterSFXSource(audioSource);
@@ -343,7 +346,12 @@ if (useSpriteAnimation && characterAnimator != null)
     {
         if (!isAnimating)
         {
+            Debug.Log($"[EnemyJumpAttack] {gameObject.name}: PerformJumpAttack called. Target: {targetPosition}, isAnimating: {isAnimating}");
          StartCoroutine(JumpAttackCoroutine(targetPosition, onAttackHit, damage));
+        }
+        else
+        {
+            Debug.LogWarning($"[EnemyJumpAttack] {gameObject.name}: PerformJumpAttack called but already animating! Skipping.");
         }
     }
 
@@ -357,6 +365,7 @@ if (useSpriteAnimation && characterAnimator != null)
 
     private IEnumerator JumpAttackCoroutine(Vector3 targetPosition, System.Action onAttackHit, float damage)
     {
+        Debug.Log($"[EnemyJumpAttack] {gameObject.name}: JumpAttackCoroutine started. Target: {targetPosition}");
         isAnimating = true;
  
         // CRITICAL: Store original position and rotation BEFORE any movement
@@ -454,27 +463,70 @@ if (useSpriteAnimation && characterAnimator != null)
         
         yield return StartCoroutine(JumpToPosition(startPosition, attackPosition, jumpToPlayerDuration));
         
+        Debug.Log($"[EnemyJumpAttack] {gameObject.name}: Jump completed. Checking animator conditions. useSpriteAnimation: {useSpriteAnimation}, characterAnimator: {(characterAnimator != null ? "exists" : "NULL")}, controller: {(characterAnimator != null && characterAnimator.runtimeAnimatorController != null ? "assigned" : "NULL")}");
+        
         if (useSpriteAnimation && characterAnimator != null && characterAnimator.runtimeAnimatorController != null)
         {
+            Debug.Log($"[EnemyJumpAttack] {gameObject.name}: Attempting to trigger attack animation. useAttackTrigger: {useAttackTrigger}, triggerName: '{attackAnimationTrigger}', stateName: '{attackAnimationState}'");
+            
     if (useAttackTrigger && !string.IsNullOrEmpty(attackAnimationTrigger))
       {
-                if (HasParameter(characterAnimator, attackAnimationTrigger))
+                bool hasParam = HasParameter(characterAnimator, attackAnimationTrigger);
+                Debug.Log($"[EnemyJumpAttack] {gameObject.name}: HasParameter('{attackAnimationTrigger}') = {hasParam}");
+                
+                if (hasParam)
           {
+              // Ensure animator is enabled and updating
+              if (!characterAnimator.enabled)
+              {
+                  Debug.LogWarning($"[EnemyJumpAttack] {gameObject.name}: Animator is disabled! Enabling it.");
+                  characterAnimator.enabled = true;
+              }
+              
+              // Force animator to update to current state
               characterAnimator.Update(0f);
-       characterAnimator.ResetTrigger(attackAnimationTrigger);
-             characterAnimator.SetTrigger(attackAnimationTrigger);
-                characterAnimator.Update(0f);
- characterAnimator.Update(0.001f);
+              
+              // Reset any existing trigger first
+              characterAnimator.ResetTrigger(attackAnimationTrigger);
+              
+              // Small delay to ensure reset is processed
+              yield return null;
+              
+              // Set the attack trigger
+              characterAnimator.SetTrigger(attackAnimationTrigger);
+              
+              // Force multiple updates to ensure transition happens
+              characterAnimator.Update(0f);
+              characterAnimator.Update(0.01f);
+              
+              // Check if we're now in the attack state
+              AnimatorStateInfo stateInfo = characterAnimator.GetCurrentAnimatorStateInfo(0);
+              bool isInAttackState = stateInfo.IsName("Attack");
+              Debug.Log($"[EnemyJumpAttack] {gameObject.name}: Attack trigger '{attackAnimationTrigger}' set. Current state: {stateInfo.fullPathHash}, IsName('Attack'): {isInAttackState}");
+              Debug.Log($"[EnemyJumpAttack] {gameObject.name}: Attack trigger '{attackAnimationTrigger}' set successfully");
+           }
+           else
+           {
+               Debug.LogWarning($"[EnemyJumpAttack] {gameObject.name}: Attack trigger '{attackAnimationTrigger}' parameter not found! Available parameters: {string.Join(", ", System.Array.ConvertAll(characterAnimator.parameters, p => p.name))}");
            }
        }
   else if (!string.IsNullOrEmpty(attackAnimationState))
             {
+                Debug.Log($"[EnemyJumpAttack] {gameObject.name}: Playing attack state '{attackAnimationState}' directly");
     characterAnimator.Play(attackAnimationState, 0, 0f);
     characterAnimator.Update(0f);
+         }
+         else
+         {
+             Debug.LogWarning($"[EnemyJumpAttack] {gameObject.name}: No attack trigger or state configured! useAttackTrigger: {useAttackTrigger}, triggerName: '{attackAnimationTrigger}', stateName: '{attackAnimationState}'");
          }
  
             yield return null;
   }
+        else
+        {
+            Debug.LogWarning($"[EnemyJumpAttack] {gameObject.name}: Cannot trigger attack animation. useSpriteAnimation: {useSpriteAnimation}, characterAnimator: {(characterAnimator != null ? "exists" : "NULL")}, controller: {(characterAnimator != null && characterAnimator.runtimeAnimatorController != null ? "assigned" : "NULL")}");
+        }
      
         yield return new WaitForSeconds(0.05f);
         

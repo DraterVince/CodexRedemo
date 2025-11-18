@@ -25,11 +25,26 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     [SerializeField] private Button joinRoomButton;
     [SerializeField] private TMP_Text lobbyInfoText;
 
+    private const string DIFFICULTY_KEY = "Difficulty"; // Room custom property key
+
+    public enum Difficulty
+    {
+        Easy = 0,
+        Normal = 1,
+        Hard = 2
+    }
+
+
     [Header("Room Panel")]
     [SerializeField] private TMP_Text roomNameText;
     [SerializeField] private TMP_Text playerListText;
     [SerializeField] private Button startGameButton;
     [SerializeField] private Button leaveRoomButton;
+
+    [Header("Room Difficulty (Host selects)")]
+    [SerializeField] private TMP_Dropdown difficultyDropdown; // Optional: Dropdown for Easy/Normal/Hard
+    [SerializeField] private TMP_Text difficultyLabel;        // Optional: Read-only label for clients
+
     [SerializeField] private TMP_Text readyStatusText;
     [SerializeField] private TMP_Text selectedLevelText;
     [SerializeField] private Button readyButton; // NEW: Ready button for players
@@ -59,6 +74,16 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     [Header("Game Settings")]
     [SerializeField] private int minPlayers = 2;
     [SerializeField] private int maxPlayers = 5;
+
+    [Header("Difficulty Level Sets")]
+    [Tooltip("Levels available when Difficulty=Easy")] [SerializeField]
+    private string[] easyLevels = { "Level_E1", "Level_E2" };
+    [Tooltip("Levels available when Difficulty=Normal")] [SerializeField]
+    private string[] normalLevels = { "Level_1", "Level_2", "Level_3" };
+    [Tooltip("Levels available when Difficulty=Hard")] [SerializeField]
+    private string[] hardLevels = { "Level_H1", "Level_H2" };
+
+    // Deprecated: used only as a global fallback if difficulty arrays are empty
     [SerializeField] private string[] availableLevels = { "Level_1", "Level_2", "Level_3" };
     
     /// <summary>
@@ -161,6 +186,7 @@ SetupButtons();
 
     private void ShowRoomPanel()
     {
+        SetupDifficultyUI();
         if (connectionPanel != null) connectionPanel.SetActive(false);
         if (lobbyPanel != null) lobbyPanel.SetActive(false);
      if (roomPanel != null) roomPanel.SetActive(true);
@@ -406,6 +432,19 @@ string roomName = roomNameInput != null && !string.IsNullOrEmpty(roomNameInput.t
 
     private void OnStartGameButtonClicked()
     {
+        // Ensure difficulty is set by host before starting
+        if (PhotonNetwork.IsMasterClient)
+        {
+            if (PhotonNetwork.CurrentRoom != null)
+            {
+                // If not set yet, default to Normal
+                if (!PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey(DIFFICULTY_KEY))
+                {
+                    var props = new ExitGames.Client.Photon.Hashtable { { DIFFICULTY_KEY, (int)Difficulty.Normal } };
+                    PhotonNetwork.CurrentRoom.SetCustomProperties(props);
+                }
+            }
+        }
       if (!PhotonNetwork.IsMasterClient)
      {
             Debug.LogWarning("Only the host can start the game!");
@@ -431,8 +470,20 @@ string roomName = roomNameInput != null && !string.IsNullOrEmpty(roomNameInput.t
          return;
         }
 
-        selectedLevel = availableLevels[Random.Range(0, availableLevels.Length)];
-        Debug.Log($"Starting game on level: {selectedLevel}");
+        // Pick a random level from the set based on room difficulty
+        int diff = (int)Difficulty.Normal;
+        if (PhotonNetwork.CurrentRoom != null && PhotonNetwork.CurrentRoom.CustomProperties != null && PhotonNetwork.CurrentRoom.CustomProperties.TryGetValue(DIFFICULTY_KEY, out object d))
+        {
+            if (d is int i) diff = Mathf.Clamp(i, 0, 2);
+        }
+
+        string[] pool = normalLevels;
+        if (diff == (int)Difficulty.Easy && easyLevels != null && easyLevels.Length > 0) pool = easyLevels;
+        else if (diff == (int)Difficulty.Hard && hardLevels != null && hardLevels.Length > 0) pool = hardLevels;
+        else if ((pool == null || pool.Length == 0) && availableLevels != null && availableLevels.Length > 0) pool = availableLevels; // fallback
+
+        selectedLevel = pool[Random.Range(0, pool.Length)];
+        Debug.Log($"Starting game on level: {selectedLevel} (Difficulty: {(diff==0?"Easy":diff==1?"Normal":"Hard")})");
 
         PhotonNetwork.CurrentRoom.IsOpen = false;
         PhotonNetwork.CurrentRoom.IsVisible = false;
@@ -759,6 +810,7 @@ NetworkManager.Instance.LeaveRoom();
 
     private void UpdateRoomUI()
     {
+        SetupDifficultyUI();
         if (!PhotonNetwork.InRoom) return;
 
         ShowRoomPanel();
@@ -871,6 +923,67 @@ if (currentPlayers < minPlayers)
 
     #endregion
     
+    // Difficulty helpers
+    private void SetupDifficultyUI()
+    {
+        bool isHost = PhotonNetwork.IsMasterClient && PhotonNetwork.InRoom;
+
+        if (difficultyDropdown != null)
+        {
+            // Always overwrite options to avoid seeing TMP default A/B/C
+            difficultyDropdown.onValueChanged.RemoveListener(OnDifficultyDropdownChanged);
+            difficultyDropdown.gameObject.SetActive(isHost);
+            difficultyDropdown.interactable = isHost;
+
+            difficultyDropdown.ClearOptions();
+            var opts = new List<TMP_Dropdown.OptionData>
+            {
+                new TMP_Dropdown.OptionData("Easy"),
+                new TMP_Dropdown.OptionData("Normal"),
+                new TMP_Dropdown.OptionData("Hard")
+            };
+            difficultyDropdown.AddOptions(opts);
+
+            int diff = (int)Difficulty.Normal;
+            if (PhotonNetwork.InRoom && PhotonNetwork.CurrentRoom.CustomProperties != null && PhotonNetwork.CurrentRoom.CustomProperties.TryGetValue(DIFFICULTY_KEY, out object val))
+            {
+                if (val is int i) diff = Mathf.Clamp(i, 0, 2);
+            }
+
+            difficultyDropdown.SetValueWithoutNotify(diff);
+            if (isHost)
+            {
+                difficultyDropdown.onValueChanged.AddListener(OnDifficultyDropdownChanged);
+            }
+        }
+
+        if (difficultyLabel != null)
+        {
+            int diff = (int)Difficulty.Normal;
+            if (PhotonNetwork.InRoom && PhotonNetwork.CurrentRoom.CustomProperties != null && PhotonNetwork.CurrentRoom.CustomProperties.TryGetValue(DIFFICULTY_KEY, out object val))
+            {
+                if (val is int i) diff = Mathf.Clamp(i, 0, 2);
+            }
+            string text = diff == 0 ? "Easy" : diff == 1 ? "Normal" : "Hard";
+            difficultyLabel.text = $"Difficulty: {text}";
+            difficultyLabel.gameObject.SetActive(true);
+        }
+    }
+
+    private void OnDifficultyDropdownChanged(int index)
+    {
+        if (!PhotonNetwork.IsMasterClient || !PhotonNetwork.InRoom) return;
+        int diff = Mathf.Clamp(index, 0, 2);
+        var props = new ExitGames.Client.Photon.Hashtable { { DIFFICULTY_KEY, diff } };
+        PhotonNetwork.CurrentRoom.SetCustomProperties(props);
+
+        if (difficultyLabel != null)
+        {
+            string text = diff == 0 ? "Easy" : diff == 1 ? "Normal" : "Hard";
+            difficultyLabel.text = $"Difficulty: {text}";
+        }
+    }
+
     #region Photon Callbacks
     
     /// <summary>

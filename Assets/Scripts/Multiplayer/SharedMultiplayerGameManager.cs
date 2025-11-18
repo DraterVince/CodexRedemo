@@ -25,6 +25,14 @@ public class SharedMultiplayerGameManager : MonoBehaviourPunCallbacks
     [SerializeField] private float sharedMaxHealth = 100f;
     [SerializeField] private Image sharedHealthBar;
     [SerializeField] private TextMeshProUGUI sharedHealthText;
+
+    [Header("Difficulty - Shared HP by level (editable)")]
+    [Tooltip("Shared HP when room Difficulty = Easy")] [SerializeField]
+    private float easySharedHP = 10f;
+    [Tooltip("Shared HP when room Difficulty = Normal")] [SerializeField]
+    private float normalSharedHP = 5f;
+    [Tooltip("Shared HP when room Difficulty = Hard")] [SerializeField]
+    private float hardSharedHP = 3f;
     
     [Header("Character Display")]
     [Tooltip("Position where multiplayer player characters are displayed when it's their turn. This is where characters appear after sliding in from the right.")]
@@ -177,6 +185,8 @@ enabled = false;
         // No character loading/switching needed - just use PlayCardButton.playerCharacter
         if (PhotonNetwork.IsMasterClient)
         {
+            // Apply difficulty-chosen shared HP before initializing
+            ApplyDifficultySharedHP();
             InitializeSharedHealth();
             // Initialize turn system immediately - no character loading needed
             if (turnSystem != null)
@@ -244,17 +254,57 @@ enabled = false;
     
     
     #region Shared Health System
+
+        private const string DIFFICULTY_KEY = "Difficulty";
+
+        private int GetRoomDifficulty()
+        {
+            int diff = 1; // Normal
+            if (PhotonNetwork.CurrentRoom != null && PhotonNetwork.CurrentRoom.CustomProperties != null && PhotonNetwork.CurrentRoom.CustomProperties.TryGetValue(DIFFICULTY_KEY, out object d))
+            {
+                if (d is int i) diff = Mathf.Clamp(i, 0, 2);
+            }
+            return diff;
+        }
+
+        private void ApplyDifficultySharedHP()
+        {
+            int diff = GetRoomDifficulty();
+            float hp = normalSharedHP;
+            if (diff == 0) hp = easySharedHP;
+            else if (diff == 2) hp = hardSharedHP;
+
+            sharedMaxHealth = Mathf.Max(1f, hp);
+        }
+
+        private float GetSharedMaxHealth()
+        {
+            if (PhotonNetwork.CurrentRoom != null && PhotonNetwork.CurrentRoom.CustomProperties != null)
+            {
+                if (PhotonNetwork.CurrentRoom.CustomProperties.TryGetValue("SharedMaxHealth", out object maxObj))
+                {
+                    if (maxObj is float f) return f;
+                    if (maxObj is int i) return i;
+                    if (maxObj is double d) return (float)d;
+                }
+            }
+            return sharedMaxHealth;
+        }
     
     private void InitializeSharedHealth()
     {
         if (!PhotonNetwork.IsMasterClient) return;
         
-        currentSharedHealth = sharedMaxHealth;
+        // Set shared max based on room or inspector
+        float maxHP = sharedMaxHealth;
+        // If host applied difficulty, sharedMaxHealth is already set; ensure room property reflects it
+        maxHP = Mathf.Max(1f, maxHP);
+        currentSharedHealth = maxHP;
   
         ExitGames.Client.Photon.Hashtable roomProps = new ExitGames.Client.Photon.Hashtable
         {
    { "SharedHealth", currentSharedHealth },
-         { "SharedMaxHealth", sharedMaxHealth }
+         { "SharedMaxHealth", currentSharedHealth }
  };
         
         PhotonNetwork.CurrentRoom.SetCustomProperties(roomProps);
@@ -298,7 +348,7 @@ enabled = false;
   if (delayHealthUIUpdate) return;
      
   float health = GetSharedHealth();
-   float maxHealth = sharedMaxHealth;
+   float maxHealth = GetSharedMaxHealth();
         
     if (sharedHealthBar != null)
         {
@@ -319,7 +369,7 @@ enabled = false;
         if (!PhotonNetwork.InRoom) return;
         
         float health = GetSharedHealth();
-   float maxHealth = sharedMaxHealth;
+   float maxHealth = GetSharedMaxHealth();
       
         if (sharedHealthBar != null)
         {
@@ -341,6 +391,14 @@ enabled = false;
     private IEnumerator LoadPlayerCharacters()
     {
         // CRITICAL: Wait longer for player properties to sync across network
+        // Read difficulty from room properties (default Normal)
+        int diff = 1;
+        if (PhotonNetwork.CurrentRoom != null && PhotonNetwork.CurrentRoom.CustomProperties != null && PhotonNetwork.CurrentRoom.CustomProperties.TryGetValue("Difficulty", out object d))
+        {
+            if (d is int i) diff = Mathf.Clamp(i, 0, 2);
+        }
+        Log($"[SharedMultiplayerGameManager] Difficulty: {(diff==0?"Easy":diff==1?"Normal":"Hard")}");
+
         // Properties set in OnJoinedRoom() might not be immediately available to all clients
         yield return new WaitForSeconds(1.0f);
         

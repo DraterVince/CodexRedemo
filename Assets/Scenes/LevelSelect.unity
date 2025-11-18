@@ -416,6 +416,11 @@ MonoBehaviour:
   attackAnimationState: Attack
   attackEffectPrefab: {fileID: 0}
   attackEffectOffset: {x: 0, y: 0, z: 0}
+  swordSoundEffect: {fileID: 0}
+  audioSource: {fileID: 0}
+  bloodSplatterEffect: {fileID: 0}
+  highDamageEffect: {fileID: 0}
+  visualEffectOffset: {x: 0, y: 0, z: 0}
 --- !u!95 &23651690
 Animator:
   serializedVersion: 5
@@ -8081,6 +8086,11 @@ MonoBehaviour:
   attackAnimationState: Attack
   attackEffectPrefab: {fileID: 0}
   attackEffectOffset: {x: 0, y: 0, z: 0}
+  swordSoundEffect: {fileID: 0}
+  audioSource: {fileID: 0}
+  bloodSplatterEffect: {fileID: 0}
+  highDamageEffect: {fileID: 0}
+  visualEffectOffset: {x: 0, y: 0, z: 0}
 --- !u!95 &203295814
 Animator:
   serializedVersion: 5
@@ -13369,6 +13379,11 @@ MonoBehaviour:
   attackAnimationState: Attack
   attackEffectPrefab: {fileID: 0}
   attackEffectOffset: {x: 0, y: 0, z: 0}
+  swordSoundEffect: {fileID: 0}
+  audioSource: {fileID: 0}
+  bloodSplatterEffect: {fileID: 0}
+  highDamageEffect: {fileID: 0}
+  visualEffectOffset: {x: 0, y: 0, z: 0}
 --- !u!95 &243631168
 Animator:
   serializedVersion: 5
@@ -14163,6 +14178,11 @@ MonoBehaviour:
   attackAnimationState: Attack
   attackEffectPrefab: {fileID: 0}
   attackEffectOffset: {x: 0, y: 0, z: 0}
+  swordSoundEffect: {fileID: 0}
+  audioSource: {fileID: 0}
+  bloodSplatterEffect: {fileID: 0}
+  highDamageEffect: {fileID: 0}
+  visualEffectOffset: {x: 0, y: 0, z: 0}
 --- !u!95 &272648522
 Animator:
   serializedVersion: 5
@@ -18313,6 +18333,11 @@ MonoBehaviour:
   attackAnimationState: Attack
   attackEffectPrefab: {fileID: 0}
   attackEffectOffset: {x: 0, y: 0, z: 0}
+  swordSoundEffect: {fileID: 0}
+  audioSource: {fileID: 0}
+  bloodSplatterEffect: {fileID: 0}
+  highDamageEffect: {fileID: 0}
+  visualEffectOffset: {x: 0, y: 0, z: 0}
 --- !u!95 &459838694
 Animator:
   serializedVersion: 5
@@ -18886,6 +18911,11 @@ MonoBehaviour:
   attackAnimationState: Attack
   attackEffectPrefab: {fileID: 0}
   attackEffectOffset: {x: 0, y: 0, z: 0}
+  swordSoundEffect: {fileID: 0}
+  audioSource: {fileID: 0}
+  bloodSplatterEffect: {fileID: 0}
+  highDamageEffect: {fileID: 0}
+  visualEffectOffset: {x: 0, y: 0, z: 0}
 --- !u!95 &471727838
 Animator:
   serializedVersion: 5
@@ -20495,6 +20525,11 @@ MonoBehaviour:
   attackAnimationState: Attack
   attackEffectPrefab: {fileID: 0}
   attackEffectOffset: {x: 0, y: 0, z: 0}
+  swordSoundEffect: {fileID: 0}
+  audioSource: {fileID: 0}
+  bloodSplatterEffect: {fileID: 0}
+  highDamageEffect: {fileID: 0}
+  visualEffectOffset: {x: 0, y: 0, z: 0}
 --- !u!95 &553261760
 Animator:
   serializedVersion: 5
@@ -22688,6 +22723,11 @@ MonoBehaviour:
   attackAnimationState: Attack
   attackEffectPrefab: {fileID: 0}
   attackEffectOffset: {x: 0, y: 0, z: 0}
+  swordSoundEffect: {fileID: 0}
+  audioSource: {fileID: 0}
+  bloodSplatterEffect: {fileID: 0}
+  highDamageEffect: {fileID: 0}
+  visualEffectOffset: {x: 0, y: 0, z: 0}
 --- !u!95 &656994509
 Animator:
   serializedVersion: 5
@@ -23823,6 +23863,11 @@ MonoBehaviour:
   attackAnimationState: Attack
   attackEffectPrefab: {fileID: 0}
   attackEffectOffset: {x: 0, y: 0, z: 0}
+  swordSoundEffect: {fileID: 0}
+  audioSource: {fileID: 0}
+  bloodSplatterEffect: {fileID: 0}
+  highDamageEffect: {fileID: 0}
+  visualEffectOffset: {x: 0, y: 0, z: 0}
 --- !u!95 &696913084
 Animator:
   serializedVersion: 5
@@ -30402,6 +30447,11 @@ MonoBehaviour:
   attackAnimationState: Attack
   attackEffectPrefab: {fileID: 0}
   attackEffectOffset: {x: 0, y: 0, z: 0}
+  swordSoundEffect: {fileID: 0}
+  audioSource: {fileID: 0}
+  bloodSplatterEffect: {fileID: 0}
+  highDamageEffect: {fileID: 0}
+  visualEffectOffset: {x: 0, y: 0, z: 0}
 --- !u!95 &992624256
 Animator:
   serializedVersion: 5
@@ -34626,6 +34676,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1115459770}
   m_CullTransparentMesh: 1
+--- !u!1 &1117485420
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1117485421}
+  - component: {fileID: 1117485422}
+  m_Layer: 0
+  m_Name: AudioBoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1117485421
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117485420}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 954.2859, y: 863.3015, z: -11.115412}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1117485422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117485420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1882af2fa04fb4e8a74bc38b56e688, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playOnStart: 1
 --- !u!1 &1122125335
 GameObject:
   m_ObjectHideFlags: 0
@@ -34711,6 +34806,11 @@ MonoBehaviour:
   attackAnimationState: Attack
   attackEffectPrefab: {fileID: 0}
   attackEffectOffset: {x: 0, y: 0, z: 0}
+  swordSoundEffect: {fileID: 0}
+  audioSource: {fileID: 0}
+  bloodSplatterEffect: {fileID: 0}
+  highDamageEffect: {fileID: 0}
+  visualEffectOffset: {x: 0, y: 0, z: 0}
 --- !u!95 &1122125338
 Animator:
   serializedVersion: 5
@@ -38340,6 +38440,11 @@ MonoBehaviour:
   attackAnimationState: Attack
   attackEffectPrefab: {fileID: 0}
   attackEffectOffset: {x: 0, y: 0, z: 0}
+  swordSoundEffect: {fileID: 0}
+  audioSource: {fileID: 0}
+  bloodSplatterEffect: {fileID: 0}
+  highDamageEffect: {fileID: 0}
+  visualEffectOffset: {x: 0, y: 0, z: 0}
 --- !u!95 &1249285410
 Animator:
   serializedVersion: 5
@@ -38583,7 +38688,7 @@ GameObject:
   - component: {fileID: 1261935953}
   - component: {fileID: 1261935955}
   - component: {fileID: 1261935954}
-  - component: {fileID: 1261935956}
+  - component: {fileID: 1261935957}
   m_Layer: 5
   m_Name: SettingsPanel
   m_TagString: Untagged
@@ -38649,7 +38754,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1261935952}
   m_CullTransparentMesh: 1
---- !u!114 &1261935956
+--- !u!114 &1261935957
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -38658,16 +38763,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1261935952}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0914142ea9f88ef4981ff5eb069baf05, type: 3}
+  m_Script: {fileID: 11500000, guid: bab2a7daafcd3dd489a45c4c7d13a91c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  masterVolumeSlider: {fileID: 0}
-  sfxVolumeSlider: {fileID: 0}
-  musicVolumeSlider: {fileID: 0}
-  autoFindSliders: 1
-  masterSliderName: MasterVolumeSlider
-  sfxSliderName: SFXVolumeSlider
-  musicSliderName: MusicVolumeSlider
 --- !u!1 &1262997097
 GameObject:
   m_ObjectHideFlags: 0
@@ -41293,6 +41391,11 @@ MonoBehaviour:
   attackAnimationState: Attack
   attackEffectPrefab: {fileID: 0}
   attackEffectOffset: {x: 0, y: 0, z: 0}
+  swordSoundEffect: {fileID: 0}
+  audioSource: {fileID: 0}
+  bloodSplatterEffect: {fileID: 0}
+  highDamageEffect: {fileID: 0}
+  visualEffectOffset: {x: 0, y: 0, z: 0}
 --- !u!95 &1329550245
 Animator:
   serializedVersion: 5
@@ -41974,6 +42077,11 @@ MonoBehaviour:
   attackAnimationState: Attack
   attackEffectPrefab: {fileID: 0}
   attackEffectOffset: {x: 0, y: 0, z: 0}
+  swordSoundEffect: {fileID: 0}
+  audioSource: {fileID: 0}
+  bloodSplatterEffect: {fileID: 0}
+  highDamageEffect: {fileID: 0}
+  visualEffectOffset: {x: 0, y: 0, z: 0}
 --- !u!95 &1370274536
 Animator:
   serializedVersion: 5
@@ -46641,6 +46749,64 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1536625379}
   m_CullTransparentMesh: 1
+--- !u!1 &1543071770
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1543071771}
+  - component: {fileID: 1543071772}
+  m_Layer: 0
+  m_Name: SettingsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1543071771
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1543071770}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 960, y: 540, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1543071772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1543071770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0914142ea9f88ef4981ff5eb069baf05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  masterVolumeSlider: {fileID: 0}
+  sfxVolumeSlider: {fileID: 0}
+  musicVolumeSlider: {fileID: 0}
+  autoFindSliders: 1
+  masterSliderName: MasterVolumeSlider
+  sfxSliderName: SFXVolumeSlider
+  musicSliderName: MusicVolumeSlider
+  masterMixer: {fileID: 24100000, guid: ce930dd159510614295637e5c2b9d96f, type: 2}
+  masterParam: MasterVol
+  musicParam: MusicVol
+  sfxParam: SFXVol
+  masterGroupPath: Master
+  musicGroupPath: Master/Music
+  sfxGroupPath: Master/SFX
 --- !u!1 &1545074883
 GameObject:
   m_ObjectHideFlags: 0
@@ -49534,6 +49700,11 @@ MonoBehaviour:
   attackAnimationState: Attack
   attackEffectPrefab: {fileID: 0}
   attackEffectOffset: {x: 0, y: 0, z: 0}
+  swordSoundEffect: {fileID: 0}
+  audioSource: {fileID: 0}
+  bloodSplatterEffect: {fileID: 0}
+  highDamageEffect: {fileID: 0}
+  visualEffectOffset: {x: 0, y: 0, z: 0}
 --- !u!95 &1585951495
 Animator:
   serializedVersion: 5
@@ -54882,6 +55053,11 @@ MonoBehaviour:
   attackAnimationState: Attack
   attackEffectPrefab: {fileID: 0}
   attackEffectOffset: {x: 0, y: 0, z: 0}
+  swordSoundEffect: {fileID: 0}
+  audioSource: {fileID: 0}
+  bloodSplatterEffect: {fileID: 0}
+  highDamageEffect: {fileID: 0}
+  visualEffectOffset: {x: 0, y: 0, z: 0}
 --- !u!95 &1709139842
 Animator:
   serializedVersion: 5
@@ -55817,6 +55993,11 @@ MonoBehaviour:
   attackAnimationState: Attack
   attackEffectPrefab: {fileID: 0}
   attackEffectOffset: {x: 0, y: 0, z: 0}
+  swordSoundEffect: {fileID: 0}
+  audioSource: {fileID: 0}
+  bloodSplatterEffect: {fileID: 0}
+  highDamageEffect: {fileID: 0}
+  visualEffectOffset: {x: 0, y: 0, z: 0}
 --- !u!95 &1760580611
 Animator:
   serializedVersion: 5
@@ -60555,6 +60736,11 @@ MonoBehaviour:
   attackAnimationState: Attack
   attackEffectPrefab: {fileID: 0}
   attackEffectOffset: {x: 0, y: 0, z: 0}
+  swordSoundEffect: {fileID: 0}
+  audioSource: {fileID: 0}
+  bloodSplatterEffect: {fileID: 0}
+  highDamageEffect: {fileID: 0}
+  visualEffectOffset: {x: 0, y: 0, z: 0}
 --- !u!95 &1921386089
 Animator:
   serializedVersion: 5
@@ -61454,6 +61640,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1973169460}
   m_CullTransparentMesh: 1
+--- !u!1 &1973329308
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1973329309}
+  - component: {fileID: 1973329310}
+  m_Layer: 0
+  m_Name: MusicManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1973329309
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973329308}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 954.2859, y: 863.3015, z: -11.115412}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1973329310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973329308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03f0debccdd99a04cab894a527852123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  battleMusic: {fileID: 0}
+  victoryMusic: {fileID: 0}
+  defeatMusic: {fileID: 0}
+  menuMusic: {fileID: 8300000, guid: 0218865ebbdf37a47b340deb7f753a5b, type: 3}
+  musicSource: {fileID: 0}
 --- !u!1 &1973387867
 GameObject:
   m_ObjectHideFlags: 0
@@ -62001,6 +62236,11 @@ MonoBehaviour:
   attackAnimationState: Attack
   attackEffectPrefab: {fileID: 0}
   attackEffectOffset: {x: 0, y: 0, z: 0}
+  swordSoundEffect: {fileID: 0}
+  audioSource: {fileID: 0}
+  bloodSplatterEffect: {fileID: 0}
+  highDamageEffect: {fileID: 0}
+  visualEffectOffset: {x: 0, y: 0, z: 0}
 --- !u!95 &2002503972
 Animator:
   serializedVersion: 5
@@ -63791,6 +64031,11 @@ MonoBehaviour:
   attackAnimationState: Attack
   attackEffectPrefab: {fileID: 0}
   attackEffectOffset: {x: 0, y: 0, z: 0}
+  swordSoundEffect: {fileID: 0}
+  audioSource: {fileID: 0}
+  bloodSplatterEffect: {fileID: 0}
+  highDamageEffect: {fileID: 0}
+  visualEffectOffset: {x: 0, y: 0, z: 0}
 --- !u!95 &2077882542
 Animator:
   serializedVersion: 5
@@ -64792,3 +65037,6 @@ SceneRoots:
   - {fileID: 1894580945}
   - {fileID: 911359920}
   - {fileID: 1517209826}
+  - {fileID: 1117485421}
+  - {fileID: 1973329309}
+  - {fileID: 1543071771}

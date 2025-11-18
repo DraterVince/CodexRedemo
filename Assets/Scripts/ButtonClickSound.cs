@@ -31,9 +31,12 @@ public class ButtonClickSound : MonoBehaviour
                 audioSource.playOnAwake = false;
                 audioSource.spatialBlend = 0f; // 2D sound
             }
-        }
-        
-        // Register audio source with SettingsManager for volume control
+       }
+       
+       // Route to SFX mixer group if available
+       SettingsManager.RouteSFX(audioSource);
+       
+       // Register audio source with SettingsManager for volume control
         if (audioSource != null && SettingsManager.Instance != null)
         {
             SettingsManager.RegisterSFXSource(audioSource);

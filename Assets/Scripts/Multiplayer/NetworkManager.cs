@@ -278,6 +278,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
         RoomOptions roomOptions = new RoomOptions
         {
+            // You can extend CustomRoomPropertiesForLobby to include Difficulty for lobby filtering later
+            CustomRoomPropertiesForLobby = new string[] { "Difficulty" },
             MaxPlayers = maxPlayersPerRoom,
             IsVisible = true, // Make room visible in lobby
             IsOpen = true, // Allow players to join

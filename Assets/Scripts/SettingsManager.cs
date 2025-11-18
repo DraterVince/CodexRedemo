@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
@@ -23,6 +24,23 @@ public class SettingsManager : MonoBehaviour
     public static float SFXVolume { get; private set; } = 1f;
     public static float MusicVolume { get; private set; } = 1f;
 
+    [Header("Audio Mixer (Recommended)")]
+    [Tooltip("Master mixer that contains 'Master', 'Music', and 'SFX' groups with exposed params.")]
+    [SerializeField] private AudioMixer masterMixer;
+    [Tooltip("Exposed parameter name for master volume in the mixer (dB)")]
+    [SerializeField] private string masterParam = "MasterVol";
+    [Tooltip("Exposed parameter name for music volume in the mixer (dB)")]
+    [SerializeField] private string musicParam = "MusicVol";
+    [Tooltip("Exposed parameter name for SFX volume in the mixer (dB)")]
+    [SerializeField] private string sfxParam = "SFXVol";
+
+    [Header("Mixer Group Paths (for routing)")]
+    [SerializeField] private string masterGroupPath = "Master";
+    [SerializeField] private string musicGroupPath  = "Master/Music";
+    [SerializeField] private string sfxGroupPath    = "Master/SFX";
+
+    private UnityEngine.Audio.AudioMixerGroup masterGroup, musicGroup, sfxGroup;
+
     // PlayerPrefs keys
     private const string MASTER_VOLUME_KEY = "MasterVolume";
     private const string SFX_VOLUME_KEY = "SFXVolume";
@@ -41,8 +59,22 @@ public class SettingsManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            // Ensure this object is at root so DontDestroyOnLoad works reliably
+            if (transform.parent != null)
+            {
+                transform.SetParent(null, true);
+            }
             // Don't destroy on load so settings persist across scenes
             DontDestroyOnLoad(gameObject);
+
+            // Resolve and cache mixer groups for routing
+            ResolveMixerGroups();
+
+            // After resolving mixer groups, ensure the MusicManager source is routed
+            if (MusicManager.Instance != null)
+            {
+                MusicManager.Instance.EnsureRouted();
+            }
             
             // Subscribe to scene loaded event
             SceneManager.sceneLoaded += OnSceneLoaded;
@@ -63,10 +95,52 @@ public class SettingsManager : MonoBehaviour
         }
     }
 
+    private void ResolveMixerGroups()
+    {
+        if (masterMixer == null)
+        {
+            Debug.LogWarning("[SettingsManager] No AudioMixer assigned. Mixer routing disabled.");
+            return;
+        }
+
+        var gMaster = masterMixer.FindMatchingGroups(masterGroupPath);
+        var gMusic  = masterMixer.FindMatchingGroups(musicGroupPath);
+        var gSFX    = masterMixer.FindMatchingGroups(sfxGroupPath);
+
+        masterGroup = (gMaster != null && gMaster.Length > 0) ? gMaster[0] : null;
+        musicGroup  = (gMusic  != null && gMusic.Length  > 0) ? gMusic[0]  : null;
+        sfxGroup    = (gSFX    != null && gSFX.Length    > 0) ? gSFX[0]    : null;
+
+        if (masterGroup == null) Debug.LogWarning("[SettingsManager] Mixer group not found: " + masterGroupPath);
+        if (musicGroup == null)  Debug.LogWarning("[SettingsManager] Mixer group not found: " + musicGroupPath);
+        if (sfxGroup == null)    Debug.LogWarning("[SettingsManager] Mixer group not found: " + sfxGroupPath);
+    }
+
+    public static void RouteMusic(AudioSource src)
+    {
+        if (src == null) return;
+        if (Instance != null && Instance.musicGroup != null)
+        {
+            src.outputAudioMixerGroup = Instance.musicGroup;
+        }
+    }
+
+    public static void RouteSFX(AudioSource src)
+    {
+        if (src == null) return;
+        if (Instance != null && Instance.sfxGroup != null)
+        {
+            src.outputAudioMixerGroup = Instance.sfxGroup;
+        }
+    }
+
     private void Start()
     {
         // Load saved settings first
         LoadSettings();
+
+        // Validate mixer configuration if assigned
+        ValidateMixerConfiguration();
 
         // Find and setup sliders
         FindAndSetupSliders();
@@ -80,16 +154,46 @@ public class SettingsManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // When a new scene loads, clear old slider references and find new ones
-        // This ensures we connect to sliders in the new scene, not stale references
+        // Refresh sliders on scene load (UI may differ per scene)
+        RefreshSliders();
+    }
+
+    private void ValidateMixerConfiguration()
+    {
+        if (masterMixer == null)
+        {
+            Debug.LogWarning("[SettingsManager] MasterMixer is not assigned. Volume will fall back to legacy per-source control.");
+            return;
+        }
+
+        // Validate exposed parameter names
+        float tmp;
+        if (!masterMixer.GetFloat(masterParam, out tmp))
+        {
+            Debug.LogWarning($"[SettingsManager] Exposed parameter not found on mixer: '{masterParam}'. Check name in inspector and mixer.");
+        }
+        if (!masterMixer.GetFloat(musicParam, out tmp))
+        {
+            Debug.LogWarning($"[SettingsManager] Exposed parameter not found on mixer: '{musicParam}'. Check name in inspector and mixer.");
+        }
+        if (!masterMixer.GetFloat(sfxParam, out tmp))
+        {
+            Debug.LogWarning($"[SettingsManager] Exposed parameter not found on mixer: '{sfxParam}'. Check name in inspector and mixer.");
+        }
+    }
+
+    /// <summary>
+    /// Public method to re-scan and wire sliders. Call this when a settings/options panel
+    /// becomes visible or is instantiated at runtime so sliders hook up correctly.
+    /// </summary>
+    public void RefreshSliders()
+    {
+        Debug.Log("[SettingsManager] RefreshSliders called");
+        // Clear old slider refs if auto-find is enabled, then re-find and set up
         ClearSliderReferences();
         FindAndSetupSliders();
-        
-        // MusicAudioSource components will register themselves automatically via their Start/OnEnable
-        // MusicManager's AudioSource is registered in ApplyVolumeSettings()
-        
-        // Reapply volume settings to ensure they're applied to new scene
-        ApplyVolumeSettings();
+        // Do not change volumes here; sliders reflect current saved settings without pushing new values
+        // If you need to force-apply current settings to the mixer, ensure ApplyVolumeSettings is called elsewhere on load
     }
     
     /// <summary>
@@ -207,24 +311,25 @@ public class SettingsManager : MonoBehaviour
         // Master Volume Slider
         if (masterVolumeSlider != null)
         {
-            masterVolumeSlider.value = MasterVolume;
+            // Remove listeners before setting value to avoid firing change events
             masterVolumeSlider.onValueChanged.RemoveAllListeners();
+            masterVolumeSlider.SetValueWithoutNotify(MasterVolume);
             masterVolumeSlider.onValueChanged.AddListener(OnMasterVolumeChanged);
         }
 
         // SFX Volume Slider
         if (sfxVolumeSlider != null)
         {
-            sfxVolumeSlider.value = SFXVolume;
             sfxVolumeSlider.onValueChanged.RemoveAllListeners();
+            sfxVolumeSlider.SetValueWithoutNotify(SFXVolume);
             sfxVolumeSlider.onValueChanged.AddListener(OnSFXVolumeChanged);
         }
 
         // Music Volume Slider
         if (musicVolumeSlider != null)
         {
-            musicVolumeSlider.value = MusicVolume;
             musicVolumeSlider.onValueChanged.RemoveAllListeners();
+            musicVolumeSlider.SetValueWithoutNotify(MusicVolume);
             musicVolumeSlider.onValueChanged.AddListener(OnMusicVolumeChanged);
         }
     }
@@ -247,18 +352,25 @@ public class SettingsManager : MonoBehaviour
 
     public void ApplyVolumeSettings()
     {
-        // Apply master volume to AudioListener (affects all audio globally)
-        // This is applied to everything, so individual sources don't need to multiply by master
-        AudioListener.volume = MasterVolume;
+        Debug.Log($"[SettingsManager] Applying volume settings - Master: {MasterVolume:F2}, Music: {MusicVolume:F2}, SFX: {SFXVolume:F2}");
 
+        // Preferred: drive AudioMixer exposed parameters (dB)
+        if (masterMixer != null)
+        {
+            masterMixer.SetFloat(masterParam, ToDb(MasterVolume));
+            masterMixer.SetFloat(musicParam,  ToDb(MusicVolume  * MasterVolume));
+            masterMixer.SetFloat(sfxParam,    ToDb(SFXVolume    * MasterVolume));
+            // Note: If parameters are misnamed, values won't apply. ValidateMixerConfiguration() logs that.
+            return; // Mixer in control; no per-source updates needed
+        }
+
+        // Fallback (legacy path): per-source volume control
         // Ensure MusicManager's AudioSource is registered before updating
-        // This is important because MusicManager uses DontDestroyOnLoad and might not be found by FindObjectsOfType
         if (MusicManager.Instance != null)
         {
             AudioSource musicManagerSource = MusicManager.Instance.GetMusicSource();
             if (musicManagerSource != null)
             {
-                // Avoid Contains allocation - check manually
                 bool alreadyRegistered = false;
                 for (int i = 0; i < registeredMusicSources.Count; i++)
                 {
@@ -268,24 +380,18 @@ public class SettingsManager : MonoBehaviour
                         break;
                     }
                 }
-                
                 if (!alreadyRegistered)
                 {
                     RegisterMusicSource(musicManagerSource);
                 }
             }
         }
-        
 
-        // Update registered SFX audio sources
-        UpdateRegisteredAudioSources(registeredSFXSources, SFXVolume);
-
-        // Update registered Music audio sources
-        // This includes MusicManager's AudioSource if it's registered
-        UpdateRegisteredAudioSources(registeredMusicSources, MusicVolume);
+        UpdateRegisteredAudioSources(registeredSFXSources, SFXVolume, true);
+        UpdateRegisteredAudioSources(registeredMusicSources, MusicVolume, true);
     }
 
-    private void UpdateRegisteredAudioSources(List<AudioSource> sources, float volumeSetting)
+    private void UpdateRegisteredAudioSources(List<AudioSource> sources, float volumeSetting, bool applyMasterVolume = false)
     {
         // Remove null references - avoid lambda allocation
         for (int i = sources.Count - 1; i >= 0; i--)
@@ -324,10 +430,19 @@ public class SettingsManager : MonoBehaviour
                     volumeHelper.originalVolume = 1f;
                 }
 
-                // Apply volume setting: original volume * volume setting
-                // Master volume is already applied via AudioListener.volume
+                // Apply volume setting: original volume × category volume × master volume
+                // This creates proper volume hierarchy: Master affects all, category affects specific type
                 float finalVolume = volumeHelper.originalVolume * volumeSetting;
+                
+                if (applyMasterVolume)
+                {
+                    finalVolume *= MasterVolume;
+                }
+                
                 source.volume = finalVolume;
+                
+                // Log for debugging
+                Debug.Log($"[SettingsManager] Updated {source.gameObject.name} volume to {finalVolume:F3} (Original: {volumeHelper.originalVolume:F2}, Category: {volumeSetting:F2}, Master: {MasterVolume:F2})");
             }
         }
     }
@@ -335,6 +450,7 @@ public class SettingsManager : MonoBehaviour
     private void OnMasterVolumeChanged(float value)
     {
         MasterVolume = Mathf.Clamp01(value);
+        Debug.Log($"[SettingsManager] Master Volume changed to: {MasterVolume:F2} ({MasterVolume * 100:F0}%)");
         SaveSettings();
         ApplyVolumeSettings();
     }
@@ -342,6 +458,7 @@ public class SettingsManager : MonoBehaviour
     private void OnSFXVolumeChanged(float value)
     {
         SFXVolume = Mathf.Clamp01(value);
+        Debug.Log($"[SettingsManager] SFX Volume changed to: {SFXVolume:F2} ({SFXVolume * 100:F0}%)");
         SaveSettings();
         ApplyVolumeSettings();
     }
@@ -349,6 +466,7 @@ public class SettingsManager : MonoBehaviour
     private void OnMusicVolumeChanged(float value)
     {
         MusicVolume = Mathf.Clamp01(value);
+        Debug.Log($"[SettingsManager] Music Volume changed to: {MusicVolume:F2} ({MusicVolume * 100:F0}%)");
         SaveSettings();
         ApplyVolumeSettings();
     }
@@ -424,21 +542,31 @@ public class SettingsManager : MonoBehaviour
     }
 
     // Method for AudioSources to get their effective volume (when playing one-shot sounds)
-    // Master volume is handled by AudioListener, so we only return the category volume
+    // Returns: baseVolume × category volume × master volume
     public static float GetEffectiveVolume(bool isMusic, float baseVolume = 1f)
     {
+        // If an AudioMixer is assigned and we're routing sources, let the mixer control volume.
+        if (Instance != null && Instance.masterMixer != null)
+        {
+            return baseVolume;
+        }
+
         if (isMusic)
         {
-            return baseVolume * MusicVolume;
+            return baseVolume * MusicVolume * MasterVolume;
         }
         else
         {
-            return baseVolume * SFXVolume;
+            return baseVolume * SFXVolume * MasterVolume;
         }
+    }
+    private static float ToDb(float v)
+    {
+        return v <= 0f ? -80f : Mathf.Log10(v) * 20f;
     }
 }
 
-// Helper component to store original volume
+// Helper component to store original volume (used by legacy per-source path)
 public class AudioVolumeHelper : MonoBehaviour
 {
     public float originalVolume = 1f;

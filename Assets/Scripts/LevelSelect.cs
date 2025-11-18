@@ -27,10 +27,17 @@ public class LevelSelect : MonoBehaviour
     private void Start()
     {
         if (autoRefreshCharacterSelection)
-  {
+        {
             StartCoroutine(ForceRefreshCharacterSelection());
         }
- }
+
+        // Ensure menu music plays in Level Select just like in Main Menu
+        if (MusicManager.Instance != null)
+        {
+            // Use non-interrupting version so music continues between menu scenes
+            MusicManager.Instance.PlayMenuMusicIfNotPlaying();
+        }
+    }
     
     private IEnumerator ForceRefreshCharacterSelection()
     {

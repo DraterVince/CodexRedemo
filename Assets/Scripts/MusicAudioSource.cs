@@ -62,6 +62,8 @@ public class MusicAudioSource : MonoBehaviour
     {
         if (audioSource != null && SettingsManager.Instance != null && !isRegistered)
         {
+            // Route to Music mixer group before registering
+            SettingsManager.RouteMusic(audioSource);
             SettingsManager.RegisterMusicSource(audioSource);
             isRegistered = true;
         }
