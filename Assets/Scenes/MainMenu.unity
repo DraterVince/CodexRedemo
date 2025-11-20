@@ -787,11 +787,20 @@ MonoBehaviour:
   - MainMenu
   - LevelSelect
   - Singleplayer
+  - Multiplayer
+  - LoginScene
   battleScenes:
   - Part1Level1Hint
   - Part1Level2Hint
   - Part1Level3Hint
   - Part1Level4Hint
+  - Part1Level5Hint
+  - Part1Level6Hint
+  - Part1Level7Hint
+  - Part1Level8Hint
+  - Part1Level9Hint
+  - Part1Level10Hint
+  - TutorialLevel
 --- !u!4 &223492703
 Transform:
   m_ObjectHideFlags: 0
