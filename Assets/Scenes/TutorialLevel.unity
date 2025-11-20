@@ -1307,6 +1307,100 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 135648429}
   m_CullTransparentMesh: 1
+--- !u!21 &144629166
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shapes2D Material
+  m_Shader: {fileID: 4800000, guid: 44f74e30da9814584b2fdcdbe799e51a, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - FILL_SOLID_COLOR
+  - RECTANGLE
+  m_InvalidKeywords:
+  - _EMISSION
+  m_LightmapFlags: 1
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 3000
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _BumpScale: 1
+    - _ColorMask: 15
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _Shapes2D_DstAlpha: 1
+    - _Shapes2D_DstBlend: 10
+    - _Shapes2D_SrcAlpha: 1
+    - _Shapes2D_SrcBlend: 1
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _UVSec: 0
+    - _ZWrite: 1
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1 &151819844
 GameObject:
   m_ObjectHideFlags: 0
@@ -2124,6 +2218,37 @@ MonoBehaviour:
   cardName: 
   cardDesign: {fileID: 194296299}
   Card: {fileID: 194296295}
+  enableHoverHints: 1
+  hintTooltipPrefab: {fileID: 0}
+  hintTooltipCanvas: {fileID: 0}
+  hintTooltipOffset: {x: 0, y: 90}
+  followPointer: 1
+  showSubtitle: 0
+  subtitleText: {fileID: 0}
+  autoCreateSubtitleText: 1
+  subtitleAnchorMin: {x: 1, y: 1}
+  subtitleAnchorMax: {x: 1, y: 1}
+  subtitlePivot: {x: 1, y: 1}
+  subtitleOffsetMin: {x: -300, y: -96}
+  subtitleOffsetMax: {x: -16, y: -16}
+  subtitleFontSize: 40
+  subtitleAlignment: 516
+  subtitleColor: {r: 1, g: 1, b: 1, a: 1}
+  subtitleFallback: 
+  showAttackDamage: 1
+  attackDamageText: {fileID: 0}
+  autoCreateDamageText: 1
+  damageTextAnchorMin: {x: 1, y: 1}
+  damageTextAnchorMax: {x: 1, y: 1}
+  damageTextPivot: {x: 1, y: 1}
+  damageTextOffsetMin: {x: -160, y: -72}
+  damageTextOffsetMax: {x: -16, y: -16}
+  damageTextFontSize: 40
+  damageTextAlignment: 516
+  enforceDamageTextLayout: 1
+  attackDamagePrefix: 'DMG: '
+  attackDamageSuffix: 
+  attackDamageColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &194296299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3798,7 +3923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 733102416}
+  m_Material: {fileID: 144629166}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -5144,6 +5269,9 @@ MonoBehaviour:
   sharedMaxHealth: 10
   sharedHealthBar: {fileID: 792594379}
   sharedHealthText: {fileID: 2129822701}
+  easySharedHP: 10
+  normalSharedHP: 5
+  hardSharedHP: 3
   characterDisplayPosition: {fileID: 1684291062}
   _characterSlideSpeed: 5
   offScreenLeft: {x: -15, y: 0, z: 0}
@@ -5166,6 +5294,7 @@ MonoBehaviour:
   resumeButton: {fileID: 0}
   returnToLobbyFromPauseButton: {fileID: 0}
   expectedOutputPanel: {fileID: 0}
+  playBattleMusicOnStart: 1
   playCardButton: {fileID: 846639896}
   cardManager: {fileID: 210525178}
   enemyManager: {fileID: 247258858}
@@ -6185,6 +6314,64 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &640035941
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 640035942}
+  - component: {fileID: 640035943}
+  m_Layer: 0
+  m_Name: SettingsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &640035942
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 640035941}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1322170452}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &640035943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 640035941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0914142ea9f88ef4981ff5eb069baf05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  masterVolumeSlider: {fileID: 0}
+  sfxVolumeSlider: {fileID: 0}
+  musicVolumeSlider: {fileID: 0}
+  autoFindSliders: 1
+  masterSliderName: MasterVolumeSlider
+  sfxSliderName: SFXVolumeSlider
+  musicSliderName: MusicVolumeSlider
+  masterMixer: {fileID: 24100000, guid: ce930dd159510614295637e5c2b9d96f, type: 2}
+  masterParam: MasterVol
+  musicParam: MusicVol
+  sfxParam: SFXVol
+  masterGroupPath: Master
+  musicGroupPath: Master/Music
+  sfxGroupPath: Master/SFX
 --- !u!21 &650267458
 Material:
   serializedVersion: 8
@@ -6486,100 +6673,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 723540227}
   m_CullTransparentMesh: 1
---- !u!21 &733102416
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Shapes2D Material
-  m_Shader: {fileID: 4800000, guid: 44f74e30da9814584b2fdcdbe799e51a, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - FILL_SOLID_COLOR
-  - RECTANGLE
-  m_InvalidKeywords:
-  - _EMISSION
-  m_LightmapFlags: 1
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _BumpMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailAlbedoMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailMask:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailNormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _EmissionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MetallicGlossMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _OcclusionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _ParallaxMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _BumpScale: 1
-    - _ColorMask: 15
-    - _Cutoff: 0.5
-    - _DetailNormalMapScale: 1
-    - _DstBlend: 0
-    - _GlossMapScale: 1
-    - _Glossiness: 0.5
-    - _GlossyReflections: 1
-    - _Metallic: 0
-    - _Mode: 0
-    - _OcclusionStrength: 1
-    - _Parallax: 0.02
-    - _Shapes2D_DstAlpha: 1
-    - _Shapes2D_DstBlend: 10
-    - _Shapes2D_SrcAlpha: 1
-    - _Shapes2D_SrcBlend: 1
-    - _SmoothnessTextureChannel: 0
-    - _SpecularHighlights: 1
-    - _SrcBlend: 1
-    - _Stencil: 0
-    - _StencilComp: 8
-    - _StencilOp: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
-    - _UVSec: 0
-    - _ZWrite: 1
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1 &750268068
 GameObject:
   m_ObjectHideFlags: 0
@@ -7951,6 +8044,8 @@ MonoBehaviour:
     - Hello World
     - ;
     - '}'
+    correctAnswerDamage: []
+    wrongAnswerDamage: 1
   playerHealthBar: {fileID: 792594379}
   enemyHealthBarObject:
   - {fileID: 1093102582}
@@ -8829,6 +8924,37 @@ MonoBehaviour:
   cardName: 
   cardDesign: {fileID: 911729716}
   Card: {fileID: 911729713}
+  enableHoverHints: 1
+  hintTooltipPrefab: {fileID: 0}
+  hintTooltipCanvas: {fileID: 0}
+  hintTooltipOffset: {x: 0, y: 90}
+  followPointer: 1
+  showSubtitle: 0
+  subtitleText: {fileID: 0}
+  autoCreateSubtitleText: 1
+  subtitleAnchorMin: {x: 1, y: 1}
+  subtitleAnchorMax: {x: 1, y: 1}
+  subtitlePivot: {x: 1, y: 1}
+  subtitleOffsetMin: {x: -300, y: -96}
+  subtitleOffsetMax: {x: -16, y: -16}
+  subtitleFontSize: 40
+  subtitleAlignment: 516
+  subtitleColor: {r: 1, g: 1, b: 1, a: 1}
+  subtitleFallback: 
+  showAttackDamage: 1
+  attackDamageText: {fileID: 0}
+  autoCreateDamageText: 1
+  damageTextAnchorMin: {x: 1, y: 1}
+  damageTextAnchorMax: {x: 1, y: 1}
+  damageTextPivot: {x: 1, y: 1}
+  damageTextOffsetMin: {x: -160, y: -72}
+  damageTextOffsetMax: {x: -16, y: -16}
+  damageTextFontSize: 40
+  damageTextAlignment: 516
+  enforceDamageTextLayout: 1
+  attackDamagePrefix: 'DMG: '
+  attackDamageSuffix: 
+  attackDamageColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &911729716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9461,6 +9587,12 @@ MonoBehaviour:
   attackAnimationState: Attack
   attackEffectPrefab: {fileID: 0}
   attackEffectOffset: {x: 0, y: 0, z: 0}
+  swordSoundEffect: {fileID: 8300000, guid: e1dcc8bd7853582459730fe81a6c4532, type: 3}
+  highDamageSoundEffect: {fileID: 8300000, guid: 70756330514713746987dd4b41151aee, type: 3}
+  audioSource: {fileID: 0}
+  bloodSplatterEffect: {fileID: 6529726498670662938, guid: 79420aecbb47ac9469c17a0393ed3602, type: 3}
+  highDamageEffect: {fileID: 1564481908025290153, guid: e6905fa69182e884e9eef3ae6f696631, type: 3}
+  visualEffectOffset: {x: 0, y: 0, z: 0}
   returnToStartPositionAfterAttack: 1
 --- !u!95 &963030536
 Animator:
@@ -9483,6 +9615,134 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &968226525
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 968226527}
+  - component: {fileID: 968226526}
+  m_Layer: 0
+  m_Name: BackgroundMusic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &968226526
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 968226525}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 7275299516290654203, guid: ce930dd159510614295637e5c2b9d96f, type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &968226527
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 968226525}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 954.2859, y: 863.3015, z: -11.115412}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &987995003
 GameObject:
   m_ObjectHideFlags: 0
@@ -11130,6 +11390,37 @@ MonoBehaviour:
   cardName: 
   cardDesign: {fileID: 1105031009}
   Card: {fileID: 1105031005}
+  enableHoverHints: 1
+  hintTooltipPrefab: {fileID: 0}
+  hintTooltipCanvas: {fileID: 0}
+  hintTooltipOffset: {x: 0, y: 90}
+  followPointer: 1
+  showSubtitle: 0
+  subtitleText: {fileID: 0}
+  autoCreateSubtitleText: 1
+  subtitleAnchorMin: {x: 1, y: 1}
+  subtitleAnchorMax: {x: 1, y: 1}
+  subtitlePivot: {x: 1, y: 1}
+  subtitleOffsetMin: {x: -300, y: -96}
+  subtitleOffsetMax: {x: -16, y: -16}
+  subtitleFontSize: 40
+  subtitleAlignment: 516
+  subtitleColor: {r: 1, g: 1, b: 1, a: 1}
+  subtitleFallback: 
+  showAttackDamage: 1
+  attackDamageText: {fileID: 0}
+  autoCreateDamageText: 1
+  damageTextAnchorMin: {x: 1, y: 1}
+  damageTextAnchorMax: {x: 1, y: 1}
+  damageTextPivot: {x: 1, y: 1}
+  damageTextOffsetMin: {x: -160, y: -72}
+  damageTextOffsetMax: {x: -16, y: -16}
+  damageTextFontSize: 40
+  damageTextAlignment: 516
+  enforceDamageTextLayout: 1
+  attackDamagePrefix: 'DMG: '
+  attackDamageSuffix: 
+  attackDamageColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &1105031009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11970,7 +12261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 1272685417}
+  m_Material: {fileID: 1306306305}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -12026,7 +12317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 227588875}
-  remainingTime: 20
+  remainingTime: 60
   GameOverScreen: {fileID: 0}
   ExpectedOutput: {fileID: 353810788}
 --- !u!4 &1185818394
@@ -12876,100 +13167,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1269632079}
   m_CullTransparentMesh: 1
---- !u!21 &1272685417
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Shapes2D Material
-  m_Shader: {fileID: 4800000, guid: 44f74e30da9814584b2fdcdbe799e51a, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - FILL_SOLID_COLOR
-  - RECTANGLE
-  m_InvalidKeywords:
-  - _EMISSION
-  m_LightmapFlags: 1
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _BumpMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailAlbedoMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailMask:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailNormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _EmissionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MetallicGlossMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _OcclusionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _ParallaxMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _BumpScale: 1
-    - _ColorMask: 15
-    - _Cutoff: 0.5
-    - _DetailNormalMapScale: 1
-    - _DstBlend: 0
-    - _GlossMapScale: 1
-    - _Glossiness: 0.5
-    - _GlossyReflections: 1
-    - _Metallic: 0
-    - _Mode: 0
-    - _OcclusionStrength: 1
-    - _Parallax: 0.02
-    - _Shapes2D_DstAlpha: 1
-    - _Shapes2D_DstBlend: 10
-    - _Shapes2D_SrcAlpha: 1
-    - _Shapes2D_SrcBlend: 1
-    - _SmoothnessTextureChannel: 0
-    - _SpecularHighlights: 1
-    - _SrcBlend: 1
-    - _Stencil: 0
-    - _StencilComp: 8
-    - _StencilOp: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
-    - _UVSec: 0
-    - _ZWrite: 1
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1 &1280196647
 GameObject:
   m_ObjectHideFlags: 0
@@ -13507,6 +13704,100 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
+--- !u!21 &1306306305
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shapes2D Material
+  m_Shader: {fileID: 4800000, guid: 44f74e30da9814584b2fdcdbe799e51a, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - FILL_SOLID_COLOR
+  - RECTANGLE
+  m_InvalidKeywords:
+  - _EMISSION
+  m_LightmapFlags: 1
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 3000
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _BumpScale: 1
+    - _ColorMask: 15
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _Shapes2D_DstAlpha: 1
+    - _Shapes2D_DstBlend: 10
+    - _Shapes2D_SrcAlpha: 1
+    - _Shapes2D_SrcBlend: 1
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _UVSec: 0
+    - _ZWrite: 1
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1 &1309840699
 GameObject:
   m_ObjectHideFlags: 0
@@ -13899,6 +14190,8 @@ Transform:
   - {fileID: 1225266146}
   - {fileID: 511309425}
   - {fileID: 1981886355}
+  - {fileID: 2094846229}
+  - {fileID: 640035942}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!21 &1328855690
@@ -14140,6 +14433,37 @@ MonoBehaviour:
   cardName: 
   cardDesign: {fileID: 1361638691}
   Card: {fileID: 1361638687}
+  enableHoverHints: 1
+  hintTooltipPrefab: {fileID: 0}
+  hintTooltipCanvas: {fileID: 0}
+  hintTooltipOffset: {x: 0, y: 90}
+  followPointer: 1
+  showSubtitle: 0
+  subtitleText: {fileID: 0}
+  autoCreateSubtitleText: 1
+  subtitleAnchorMin: {x: 1, y: 1}
+  subtitleAnchorMax: {x: 1, y: 1}
+  subtitlePivot: {x: 1, y: 1}
+  subtitleOffsetMin: {x: -300, y: -96}
+  subtitleOffsetMax: {x: -16, y: -16}
+  subtitleFontSize: 40
+  subtitleAlignment: 516
+  subtitleColor: {r: 1, g: 1, b: 1, a: 1}
+  subtitleFallback: 
+  showAttackDamage: 1
+  attackDamageText: {fileID: 0}
+  autoCreateDamageText: 1
+  damageTextAnchorMin: {x: 1, y: 1}
+  damageTextAnchorMax: {x: 1, y: 1}
+  damageTextPivot: {x: 1, y: 1}
+  damageTextOffsetMin: {x: -160, y: -72}
+  damageTextOffsetMax: {x: -16, y: -16}
+  damageTextFontSize: 40
+  damageTextAlignment: 516
+  enforceDamageTextLayout: 1
+  attackDamagePrefix: 'DMG: '
+  attackDamageSuffix: 
+  attackDamageColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &1361638691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17822,6 +18146,37 @@ MonoBehaviour:
   cardName: 
   cardDesign: {fileID: 1649060402}
   Card: {fileID: 1649060398}
+  enableHoverHints: 1
+  hintTooltipPrefab: {fileID: 0}
+  hintTooltipCanvas: {fileID: 0}
+  hintTooltipOffset: {x: 0, y: 90}
+  followPointer: 1
+  showSubtitle: 0
+  subtitleText: {fileID: 0}
+  autoCreateSubtitleText: 1
+  subtitleAnchorMin: {x: 1, y: 1}
+  subtitleAnchorMax: {x: 1, y: 1}
+  subtitlePivot: {x: 1, y: 1}
+  subtitleOffsetMin: {x: -300, y: -96}
+  subtitleOffsetMax: {x: -16, y: -16}
+  subtitleFontSize: 40
+  subtitleAlignment: 516
+  subtitleColor: {r: 1, g: 1, b: 1, a: 1}
+  subtitleFallback: 
+  showAttackDamage: 1
+  attackDamageText: {fileID: 0}
+  autoCreateDamageText: 1
+  damageTextAnchorMin: {x: 1, y: 1}
+  damageTextAnchorMax: {x: 1, y: 1}
+  damageTextPivot: {x: 1, y: 1}
+  damageTextOffsetMin: {x: -160, y: -72}
+  damageTextOffsetMax: {x: -16, y: -16}
+  damageTextFontSize: 40
+  damageTextAlignment: 516
+  enforceDamageTextLayout: 1
+  attackDamagePrefix: 'DMG: '
+  attackDamageSuffix: 
+  attackDamageColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &1649060402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21855,6 +22210,11 @@ MonoBehaviour:
   attackAnimationState: Attack
   attackEffectPrefab: {fileID: 0}
   attackEffectOffset: {x: 0, y: 0, z: 0}
+  swordSoundEffect: {fileID: 8300000, guid: bdba732537ffb624f9dbe601af81be11, type: 3}
+  audioSource: {fileID: 0}
+  bloodSplatterEffect: {fileID: 6529726498670662938, guid: 79420aecbb47ac9469c17a0393ed3602, type: 3}
+  highDamageEffect: {fileID: 0}
+  visualEffectOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &2017466017
 GameObject:
   m_ObjectHideFlags: 0
@@ -22312,6 +22672,73 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2072247885}
   m_CullTransparentMesh: 1
+--- !u!1 &2094846228
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2094846229}
+  - component: {fileID: 2094846230}
+  m_Layer: 0
+  m_Name: MusicManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2094846229
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094846228}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1322170452}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2094846230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094846228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03f0debccdd99a04cab894a527852123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  battleMusic: {fileID: 8300000, guid: 018f6e35e69ee184f91a0be52422b3dc, type: 3}
+  victoryMusic: {fileID: 8300000, guid: 961276de04e30bb49b9d9e06ac4cb7a6, type: 3}
+  defeatMusic: {fileID: 8300000, guid: 126a511c47e6e4f4f8b214bfc7b7c092, type: 3}
+  menuMusic: {fileID: 0}
+  musicSource: {fileID: 968226526}
+  autoSwitchOnSceneLoaded: 1
+  menuScenes:
+  - MainMenu
+  - LevelSelect
+  - LoginScene
+  - Singleplayer
+  - Multiplayer
+  battleScenes:
+  - Part1Level1Hint
+  - Part1Level2Hint
+  - Part1Level3Hint
+  - Part1Level4Hint
+  - Part1Level5
+  - Part1Level6
+  - Part1Level7
+  - Part1Level8
+  - Part1Level9
+  - Part1Level10
 --- !u!1 &2103274764
 GameObject:
   m_ObjectHideFlags: 0
@@ -22880,6 +23307,37 @@ MonoBehaviour:
   cardName: 
   cardDesign: {fileID: 2145199456}
   Card: {fileID: 2145199452}
+  enableHoverHints: 1
+  hintTooltipPrefab: {fileID: 0}
+  hintTooltipCanvas: {fileID: 0}
+  hintTooltipOffset: {x: 0, y: 90}
+  followPointer: 1
+  showSubtitle: 0
+  subtitleText: {fileID: 0}
+  autoCreateSubtitleText: 1
+  subtitleAnchorMin: {x: 1, y: 1}
+  subtitleAnchorMax: {x: 1, y: 1}
+  subtitlePivot: {x: 1, y: 1}
+  subtitleOffsetMin: {x: -300, y: -96}
+  subtitleOffsetMax: {x: -16, y: -16}
+  subtitleFontSize: 40
+  subtitleAlignment: 516
+  subtitleColor: {r: 1, g: 1, b: 1, a: 1}
+  subtitleFallback: 
+  showAttackDamage: 1
+  attackDamageText: {fileID: 0}
+  autoCreateDamageText: 1
+  damageTextAnchorMin: {x: 1, y: 1}
+  damageTextAnchorMax: {x: 1, y: 1}
+  damageTextPivot: {x: 1, y: 1}
+  damageTextOffsetMin: {x: -160, y: -72}
+  damageTextOffsetMax: {x: -16, y: -16}
+  damageTextFontSize: 40
+  damageTextAlignment: 516
+  enforceDamageTextLayout: 1
+  attackDamagePrefix: 'DMG: '
+  attackDamageSuffix: 
+  attackDamageColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &2145199456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23061,3 +23519,4 @@ SceneRoots:
   - {fileID: 1322170452}
   - {fileID: 992795576}
   - {fileID: 1003712986}
+  - {fileID: 968226527}

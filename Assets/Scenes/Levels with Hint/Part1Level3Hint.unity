@@ -866,6 +866,100 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 66015378}
   m_CullTransparentMesh: 1
+--- !u!21 &73420295
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shapes2D Material
+  m_Shader: {fileID: 4800000, guid: 44f74e30da9814584b2fdcdbe799e51a, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - FILL_SOLID_COLOR
+  - RECTANGLE
+  m_InvalidKeywords:
+  - _EMISSION
+  m_LightmapFlags: 1
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 3000
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _BumpScale: 1
+    - _ColorMask: 15
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _Shapes2D_DstAlpha: 1
+    - _Shapes2D_DstBlend: 10
+    - _Shapes2D_SrcAlpha: 1
+    - _Shapes2D_SrcBlend: 1
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _UVSec: 0
+    - _ZWrite: 1
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1 &107299633
 GameObject:
   m_ObjectHideFlags: 0
@@ -1977,6 +2071,32 @@ MonoBehaviour:
   hintTooltipCanvas: {fileID: 0}
   hintTooltipOffset: {x: 0, y: 90}
   followPointer: 1
+  showSubtitle: 0
+  subtitleText: {fileID: 0}
+  autoCreateSubtitleText: 1
+  subtitleAnchorMin: {x: 1, y: 1}
+  subtitleAnchorMax: {x: 1, y: 1}
+  subtitlePivot: {x: 1, y: 1}
+  subtitleOffsetMin: {x: -300, y: -96}
+  subtitleOffsetMax: {x: -16, y: -16}
+  subtitleFontSize: 40
+  subtitleAlignment: 516
+  subtitleColor: {r: 1, g: 1, b: 1, a: 1}
+  subtitleFallback: 
+  showAttackDamage: 1
+  attackDamageText: {fileID: 0}
+  autoCreateDamageText: 1
+  damageTextAnchorMin: {x: 1, y: 1}
+  damageTextAnchorMax: {x: 1, y: 1}
+  damageTextPivot: {x: 1, y: 1}
+  damageTextOffsetMin: {x: -160, y: -72}
+  damageTextOffsetMax: {x: -16, y: -16}
+  damageTextFontSize: 40
+  damageTextAlignment: 516
+  enforceDamageTextLayout: 1
+  attackDamagePrefix: 'DMG: '
+  attackDamageSuffix: 
+  attackDamageColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &194296299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2460,7 +2580,7 @@ RectTransform:
   m_Children:
   - {fileID: 1953860448}
   - {fileID: 880843912}
-  - {fileID: 227588877}
+  - {fileID: 261716048}
   - {fileID: 1228966655}
   - {fileID: 963030532}
   - {fileID: 1548797882}
@@ -2608,16 +2728,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 227588874}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 214433529}
+  m_Father: {fileID: 261716048}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -52}
+  m_AnchoredPosition: {x: -6.343384, y: 0}
   m_SizeDelta: {x: 230.1261, y: 88.729675}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &235084411
@@ -2819,6 +2939,141 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 247551184}
+  m_CullTransparentMesh: 1
+--- !u!1 &261716047
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 261716048}
+  - component: {fileID: 261716051}
+  - component: {fileID: 261716050}
+  - component: {fileID: 261716049}
+  m_Layer: 5
+  m_Name: TimerBackground
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &261716048
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 261716047}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 227588877}
+  m_Father: {fileID: 214433529}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 6.343384, y: 443.63513}
+  m_SizeDelta: {x: -1642.6997, y: -991.2703}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &261716049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 261716047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 409a53c2fc720400bb482962c5563548, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings:
+    _blur: 0
+    _endAngle: 360
+    _fillColor: {r: 0, g: 0, b: 0, a: 1}
+    _fillColor2: {r: 0.94509804, g: 0.76862746, b: 0.05882353, a: 0.5019608}
+    _fillOffset: {x: 0, y: 0}
+    _fillPathLoops: 0
+    _fillRotation: 0
+    _fillScale: {x: 1, y: 1}
+    _fillTexture: {fileID: 0}
+    _fillType: 2
+    _gradientAxis: 0
+    _gradientStart: 0
+    _gradientType: 0
+    _gridSize: 50
+    _innerCutout: {x: 0, y: 0}
+    _invertArc: 0
+    _lineSize: 4
+    _obsoleteNumSides: -1
+    _outlineColor: {r: 1, g: 1, b: 1, a: 1}
+    _outlineSize: 0
+    _pathSegments:
+    - p0: {x: -0.3, y: 0, z: 0}
+      p1: {x: 0, y: 0, z: 0}
+      p2: {x: 0.3, y: 0, z: 0}
+    _pathThickness: 0.1
+    _polygonPreset: 4
+    _polyVertices:
+    - {x: -0.000000021855694, y: 0.5}
+    - {x: -0.4330127, y: 0.25000003}
+    - {x: -0.43301263, y: -0.2500001}
+    - {x: 0.0000000059624403, y: -0.5}
+    - {x: 0.43301278, y: -0.24999988}
+    - {x: 0.4330127, y: 0.25000003}
+    _roundness: 50
+    _roundnessBottomLeft: 50
+    _roundnessBottomRight: 50
+    _roundnessPerCorner: 0
+    _roundnessTopLeft: 50
+    _roundnessTopRight: 50
+    _shapeType: 2
+    _startAngle: 0
+    _triangleOffset: 0.5
+    _usePolygonMap: 0
+  wasConverted: 0
+  preConvertedScale: {x: 0, y: 0, z: 0}
+--- !u!114 &261716050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 261716047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 1009693977}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &261716051
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 261716047}
   m_CullTransparentMesh: 1
 --- !u!1 &300554963
 GameObject:
@@ -3622,7 +3877,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 1492909962}
+  m_Material: {fileID: 2065976961}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -5478,9 +5733,19 @@ MonoBehaviour:
   - MainMenu
   - LevelSelect
   - LoginScene
-  battleScenes:
   - Singleplayer
-  - TutorialLevel
+  - Multiplayer
+  battleScenes:
+  - Part1Level1Hint
+  - Part1Level2Hint
+  - Part1Level3Hint
+  - Part1Level4Hint
+  - Part1Level5
+  - Part1Level6
+  - Part1Level7
+  - Part1Level8
+  - Part1Level9
+  - Part1Level10
 --- !u!1 &729877051
 GameObject:
   m_ObjectHideFlags: 0
@@ -7308,6 +7573,32 @@ MonoBehaviour:
   hintTooltipCanvas: {fileID: 0}
   hintTooltipOffset: {x: 0, y: 90}
   followPointer: 1
+  showSubtitle: 0
+  subtitleText: {fileID: 0}
+  autoCreateSubtitleText: 1
+  subtitleAnchorMin: {x: 1, y: 1}
+  subtitleAnchorMax: {x: 1, y: 1}
+  subtitlePivot: {x: 1, y: 1}
+  subtitleOffsetMin: {x: -300, y: -96}
+  subtitleOffsetMax: {x: -16, y: -16}
+  subtitleFontSize: 40
+  subtitleAlignment: 516
+  subtitleColor: {r: 1, g: 1, b: 1, a: 1}
+  subtitleFallback: 
+  showAttackDamage: 1
+  attackDamageText: {fileID: 0}
+  autoCreateDamageText: 1
+  damageTextAnchorMin: {x: 1, y: 1}
+  damageTextAnchorMax: {x: 1, y: 1}
+  damageTextPivot: {x: 1, y: 1}
+  damageTextOffsetMin: {x: -160, y: -72}
+  damageTextOffsetMax: {x: -16, y: -16}
+  damageTextFontSize: 40
+  damageTextAlignment: 516
+  enforceDamageTextLayout: 1
+  attackDamagePrefix: 'DMG: '
+  attackDamageSuffix: 
+  attackDamageColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &911729716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8398,6 +8689,100 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!21 &1009693977
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shapes2D Material
+  m_Shader: {fileID: 4800000, guid: 44f74e30da9814584b2fdcdbe799e51a, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - FILL_SOLID_COLOR
+  - RECTANGLE
+  m_InvalidKeywords:
+  - _EMISSION
+  m_LightmapFlags: 1
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 3000
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _BumpScale: 1
+    - _ColorMask: 15
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _Shapes2D_DstAlpha: 1
+    - _Shapes2D_DstBlend: 10
+    - _Shapes2D_SrcAlpha: 1
+    - _Shapes2D_SrcBlend: 1
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _UVSec: 0
+    - _ZWrite: 1
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1 &1019876870
 GameObject:
   m_ObjectHideFlags: 0
@@ -9205,6 +9590,32 @@ MonoBehaviour:
   hintTooltipCanvas: {fileID: 0}
   hintTooltipOffset: {x: 0, y: 90}
   followPointer: 1
+  showSubtitle: 0
+  subtitleText: {fileID: 0}
+  autoCreateSubtitleText: 1
+  subtitleAnchorMin: {x: 1, y: 1}
+  subtitleAnchorMax: {x: 1, y: 1}
+  subtitlePivot: {x: 1, y: 1}
+  subtitleOffsetMin: {x: -300, y: -96}
+  subtitleOffsetMax: {x: -16, y: -16}
+  subtitleFontSize: 40
+  subtitleAlignment: 516
+  subtitleColor: {r: 1, g: 1, b: 1, a: 1}
+  subtitleFallback: 
+  showAttackDamage: 1
+  attackDamageText: {fileID: 0}
+  autoCreateDamageText: 1
+  damageTextAnchorMin: {x: 1, y: 1}
+  damageTextAnchorMax: {x: 1, y: 1}
+  damageTextPivot: {x: 1, y: 1}
+  damageTextOffsetMin: {x: -160, y: -72}
+  damageTextOffsetMax: {x: -16, y: -16}
+  damageTextFontSize: 40
+  damageTextAlignment: 516
+  enforceDamageTextLayout: 1
+  attackDamagePrefix: 'DMG: '
+  attackDamageSuffix: 
+  attackDamageColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &1105031009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9904,7 +10315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 1255585127}
+  m_Material: {fileID: 73420295}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -10625,100 +11036,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0ef7822cf28a824a9463df6a9b73f1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!21 &1255585127
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Shapes2D Material
-  m_Shader: {fileID: 4800000, guid: 44f74e30da9814584b2fdcdbe799e51a, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - FILL_SOLID_COLOR
-  - RECTANGLE
-  m_InvalidKeywords:
-  - _EMISSION
-  m_LightmapFlags: 1
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _BumpMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailAlbedoMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailMask:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailNormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _EmissionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MetallicGlossMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _OcclusionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _ParallaxMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _BumpScale: 1
-    - _ColorMask: 15
-    - _Cutoff: 0.5
-    - _DetailNormalMapScale: 1
-    - _DstBlend: 0
-    - _GlossMapScale: 1
-    - _Glossiness: 0.5
-    - _GlossyReflections: 1
-    - _Metallic: 0
-    - _Mode: 0
-    - _OcclusionStrength: 1
-    - _Parallax: 0.02
-    - _Shapes2D_DstAlpha: 1
-    - _Shapes2D_DstBlend: 10
-    - _Shapes2D_SrcAlpha: 1
-    - _Shapes2D_SrcBlend: 1
-    - _SmoothnessTextureChannel: 0
-    - _SpecularHighlights: 1
-    - _SrcBlend: 1
-    - _Stencil: 0
-    - _StencilComp: 8
-    - _StencilOp: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
-    - _UVSec: 0
-    - _ZWrite: 1
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1 &1269632079
 GameObject:
   m_ObjectHideFlags: 0
@@ -11265,6 +11582,32 @@ MonoBehaviour:
   hintTooltipCanvas: {fileID: 0}
   hintTooltipOffset: {x: 0, y: 90}
   followPointer: 1
+  showSubtitle: 0
+  subtitleText: {fileID: 0}
+  autoCreateSubtitleText: 1
+  subtitleAnchorMin: {x: 1, y: 1}
+  subtitleAnchorMax: {x: 1, y: 1}
+  subtitlePivot: {x: 1, y: 1}
+  subtitleOffsetMin: {x: -300, y: -96}
+  subtitleOffsetMax: {x: -16, y: -16}
+  subtitleFontSize: 40
+  subtitleAlignment: 516
+  subtitleColor: {r: 1, g: 1, b: 1, a: 1}
+  subtitleFallback: 
+  showAttackDamage: 1
+  attackDamageText: {fileID: 0}
+  autoCreateDamageText: 1
+  damageTextAnchorMin: {x: 1, y: 1}
+  damageTextAnchorMax: {x: 1, y: 1}
+  damageTextPivot: {x: 1, y: 1}
+  damageTextOffsetMin: {x: -160, y: -72}
+  damageTextOffsetMax: {x: -16, y: -16}
+  damageTextFontSize: 40
+  damageTextAlignment: 516
+  enforceDamageTextLayout: 1
+  attackDamagePrefix: 'DMG: '
+  attackDamageSuffix: 
+  attackDamageColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &1361638691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12116,100 +12459,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1491226391}
   m_CullTransparentMesh: 1
---- !u!21 &1492909962
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Shapes2D Material
-  m_Shader: {fileID: 4800000, guid: 44f74e30da9814584b2fdcdbe799e51a, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - FILL_SOLID_COLOR
-  - RECTANGLE
-  m_InvalidKeywords:
-  - _EMISSION
-  m_LightmapFlags: 1
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _BumpMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailAlbedoMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailMask:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailNormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _EmissionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MetallicGlossMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _OcclusionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _ParallaxMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _BumpScale: 1
-    - _ColorMask: 15
-    - _Cutoff: 0.5
-    - _DetailNormalMapScale: 1
-    - _DstBlend: 0
-    - _GlossMapScale: 1
-    - _Glossiness: 0.5
-    - _GlossyReflections: 1
-    - _Metallic: 0
-    - _Mode: 0
-    - _OcclusionStrength: 1
-    - _Parallax: 0.02
-    - _Shapes2D_DstAlpha: 1
-    - _Shapes2D_DstBlend: 10
-    - _Shapes2D_SrcAlpha: 1
-    - _Shapes2D_SrcBlend: 1
-    - _SmoothnessTextureChannel: 0
-    - _SpecularHighlights: 1
-    - _SrcBlend: 1
-    - _Stencil: 0
-    - _StencilComp: 8
-    - _StencilOp: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
-    - _UVSec: 0
-    - _ZWrite: 1
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1 &1496024476
 GameObject:
   m_ObjectHideFlags: 0
@@ -13067,6 +13316,32 @@ MonoBehaviour:
   hintTooltipCanvas: {fileID: 0}
   hintTooltipOffset: {x: 0, y: 90}
   followPointer: 1
+  showSubtitle: 0
+  subtitleText: {fileID: 0}
+  autoCreateSubtitleText: 1
+  subtitleAnchorMin: {x: 1, y: 1}
+  subtitleAnchorMax: {x: 1, y: 1}
+  subtitlePivot: {x: 1, y: 1}
+  subtitleOffsetMin: {x: -300, y: -96}
+  subtitleOffsetMax: {x: -16, y: -16}
+  subtitleFontSize: 40
+  subtitleAlignment: 516
+  subtitleColor: {r: 1, g: 1, b: 1, a: 1}
+  subtitleFallback: 
+  showAttackDamage: 1
+  attackDamageText: {fileID: 0}
+  autoCreateDamageText: 1
+  damageTextAnchorMin: {x: 1, y: 1}
+  damageTextAnchorMax: {x: 1, y: 1}
+  damageTextPivot: {x: 1, y: 1}
+  damageTextOffsetMin: {x: -160, y: -72}
+  damageTextOffsetMax: {x: -16, y: -16}
+  damageTextFontSize: 40
+  damageTextAlignment: 516
+  enforceDamageTextLayout: 1
+  attackDamagePrefix: 'DMG: '
+  attackDamageSuffix: 
+  attackDamageColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &1649060402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16072,6 +16347,100 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2044540594}
   m_CullTransparentMesh: 1
+--- !u!21 &2065976961
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shapes2D Material
+  m_Shader: {fileID: 4800000, guid: 44f74e30da9814584b2fdcdbe799e51a, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - FILL_SOLID_COLOR
+  - RECTANGLE
+  m_InvalidKeywords:
+  - _EMISSION
+  m_LightmapFlags: 1
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 3000
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _BumpScale: 1
+    - _ColorMask: 15
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _Shapes2D_DstAlpha: 1
+    - _Shapes2D_DstBlend: 10
+    - _Shapes2D_SrcAlpha: 1
+    - _Shapes2D_SrcBlend: 1
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _UVSec: 0
+    - _ZWrite: 1
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1 &2070327878
 GameObject:
   m_ObjectHideFlags: 0
@@ -16913,6 +17282,32 @@ MonoBehaviour:
   hintTooltipCanvas: {fileID: 0}
   hintTooltipOffset: {x: 0, y: 90}
   followPointer: 1
+  showSubtitle: 0
+  subtitleText: {fileID: 0}
+  autoCreateSubtitleText: 1
+  subtitleAnchorMin: {x: 1, y: 1}
+  subtitleAnchorMax: {x: 1, y: 1}
+  subtitlePivot: {x: 1, y: 1}
+  subtitleOffsetMin: {x: -300, y: -96}
+  subtitleOffsetMax: {x: -16, y: -16}
+  subtitleFontSize: 40
+  subtitleAlignment: 516
+  subtitleColor: {r: 1, g: 1, b: 1, a: 1}
+  subtitleFallback: 
+  showAttackDamage: 1
+  attackDamageText: {fileID: 0}
+  autoCreateDamageText: 1
+  damageTextAnchorMin: {x: 1, y: 1}
+  damageTextAnchorMax: {x: 1, y: 1}
+  damageTextPivot: {x: 1, y: 1}
+  damageTextOffsetMin: {x: -160, y: -72}
+  damageTextOffsetMax: {x: -16, y: -16}
+  damageTextFontSize: 40
+  damageTextAlignment: 516
+  enforceDamageTextLayout: 1
+  attackDamagePrefix: 'DMG: '
+  attackDamageSuffix: 
+  attackDamageColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &2145199456
 MonoBehaviour:
   m_ObjectHideFlags: 0
