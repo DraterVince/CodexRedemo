@@ -27,6 +27,10 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public string CurrentRoomName = "";
 
     private bool shouldBeConnected = false;
+
+    // When loading a multiplayer gameplay level via PhotonNetwork.LoadLevel from a multiplayer scene,
+    // set this to true to avoid auto-disconnect on the next scene load even if the scene name doesn't look like a multiplayer scene.
+    private bool transitioningToMultiplayerLevel = false;
     
     [Header("Connection Retry Settings")]
     [SerializeField] private int maxLobbyJoinRetries = 3;
@@ -123,7 +127,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     private void CheckAndConnectIfNeeded()
     {
         string currentScene = SceneManager.GetActiveScene().name;
-        bool isMultiplayerScene = IsMultiplayerScene(currentScene);
+        bool isMultiplayerScene = IsMultiplayerScene(currentScene) || transitioningToMultiplayerLevel;
 
         Debug.Log($"[NetworkManager] Scene: {currentScene}, Is Multiplayer: {isMultiplayerScene}");
 
@@ -131,7 +135,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         // The Master Client is managing the scene loading via PhotonNetwork.LoadLevel
         if (PhotonNetwork.InRoom)
         {
+            // If we're transitioning to a multiplayer level, keep connection
             Debug.Log($"[NetworkManager] Already in room '{PhotonNetwork.CurrentRoom.Name}' - staying connected");
+            transitioningToMultiplayerLevel = false; // reset after first check
             return;
         }
 

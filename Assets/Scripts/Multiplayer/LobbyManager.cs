@@ -488,6 +488,16 @@ string roomName = roomNameInput != null && !string.IsNullOrEmpty(roomNameInput.t
         PhotonNetwork.CurrentRoom.IsOpen = false;
         PhotonNetwork.CurrentRoom.IsVisible = false;
         
+    // Mark that we are transitioning to a multiplayer gameplay level to prevent auto-disconnect
+    if (NetworkManager.Instance != null)
+    {
+        var nmType = typeof(NetworkManager);
+        var field = nmType.GetField("transitioningToMultiplayerLevel", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+        if (field != null)
+        {
+            field.SetValue(NetworkManager.Instance, true);
+        }
+    }
     PhotonNetwork.LoadLevel(selectedLevel);
     }
 
