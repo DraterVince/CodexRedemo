@@ -414,20 +414,15 @@ string roomName = roomNameInput != null && !string.IsNullOrEmpty(roomNameInput.t
     {
         if (!PhotonNetwork.InRoom) return;
 
-      // Toggle ready state
-    isLocalPlayerReady = !isLocalPlayerReady;
-
- // Update player properties
-        ExitGames.Client.Photon.Hashtable props = new ExitGames.Client.Photon.Hashtable
+        if (PhotonNetwork.IsMasterClient)
         {
-   { READY_STATE_KEY, isLocalPlayerReady }
-        };
-      PhotonNetwork.LocalPlayer.SetCustomProperties(props);
+            // Host is always ready; enforce true
+            SetLocalReady(true);
+            return;
+        }
 
-      Debug.Log($"[LobbyManager] Player ready state: {isLocalPlayerReady}");
-   
-        // Update button text
-  UpdateReadyButton();
+        // Toggle ready state for non-host
+        SetLocalReady(!isLocalPlayerReady);
     }
 
     private void OnStartGameButtonClicked()
@@ -522,6 +517,20 @@ NetworkManager.Instance.LeaveRoom();
     #region Ready System
 
     /// <summary>
+    /// Helper to set the local player's ready state and update UI + Photon property.
+    /// </summary>
+    private void SetLocalReady(bool ready)
+    {
+        isLocalPlayerReady = ready;
+        var props = new ExitGames.Client.Photon.Hashtable { { READY_STATE_KEY, isLocalPlayerReady } };
+        if (PhotonNetwork.InRoom)
+        {
+            PhotonNetwork.LocalPlayer.SetCustomProperties(props);
+        }
+        UpdateReadyButton();
+    }
+
+    /// <summary>
     /// Check if all players in the room are ready
     /// </summary>
     private bool AreAllPlayersReady()
@@ -576,16 +585,17 @@ NetworkManager.Instance.LeaveRoom();
     /// </summary>
     private bool IsPlayerReady(Player player)
     {
-// Host is always ready
-        if (player.IsMasterClient)
-         return true;
+        // Host is always ready
+        if (player != null && player.IsMasterClient)
+            return true;
 
-    if (player.CustomProperties.ContainsKey(READY_STATE_KEY))
+        if (player != null && player.CustomProperties != null && player.CustomProperties.ContainsKey(READY_STATE_KEY))
         {
-       return (bool)player.CustomProperties[READY_STATE_KEY];
+            object readyObj = player.CustomProperties[READY_STATE_KEY];
+            if (readyObj is bool b) return b;
         }
 
-     return false;
+        return false;
     }
 
     /// <summary>
@@ -961,6 +971,13 @@ if (currentPlayers < minPlayers)
             }
 
             difficultyDropdown.SetValueWithoutNotify(diff);
+
+            // Resize the dropdown RectTransform to fit the longest option text
+            ResizeDropdownToFit(difficultyDropdown, minWidth: 180f, sidePadding: 48f);
+
+            // Place the dropdown just under the difficulty label within the room panel
+            PositionDropdownUnderLabel(difficultyDropdown, difficultyLabel, verticalSpacing: 8f, leftPadding: 0f);
+
             if (isHost)
             {
                 difficultyDropdown.onValueChanged.AddListener(OnDifficultyDropdownChanged);
@@ -977,6 +994,136 @@ if (currentPlayers < minPlayers)
             string text = diff == 0 ? "Easy" : diff == 1 ? "Normal" : "Hard";
             difficultyLabel.text = $"Difficulty: {text}";
             difficultyLabel.gameObject.SetActive(true);
+        }
+    }
+
+    private static void PositionDropdownUnderLabel(TMP_Dropdown dropdown, TMP_Text label, float verticalSpacing, float leftPadding)
+    {
+        if (dropdown == null || label == null) return;
+
+        var dropRt = dropdown.GetComponent<RectTransform>();
+        var labelRt = label.GetComponent<RectTransform>();
+        if (dropRt == null || labelRt == null) return;
+
+        // Ensure same parent; if not, reparent into label's parent (room panel hierarchy)
+        if (dropRt.parent != labelRt.parent)
+        {
+            dropRt.SetParent(labelRt.parent, worldPositionStays: false);
+        }
+
+        // Copy label anchors to keep consistent local space
+        dropRt.anchorMin = labelRt.anchorMin;
+        dropRt.anchorMax = labelRt.anchorMax;
+
+        // Use top-left pivot for dropdown so we can align to label's left edge
+        dropRt.pivot = new Vector2(0f, 1f);
+
+        // Compute label's left X in its anchored space
+        // anchoredPosition is at label's pivot; left = centerX - width * pivotX
+        float labelLeftX = labelRt.anchoredPosition.x - (labelRt.sizeDelta.x * labelRt.pivot.x);
+
+        // Compute dropdown top Y just below label: start from label's top edge (centerY + height*(1 - pivotY)) then subtract spacing
+        float labelTopY = labelRt.anchoredPosition.y + (labelRt.sizeDelta.y * (1f - labelRt.pivot.y));
+        float dropTopY = labelTopY - labelRt.sizeDelta.y - verticalSpacing;
+
+        float x = labelLeftX + leftPadding;
+        float y = dropTopY;
+
+        dropRt.anchoredPosition = new Vector2(x, y);
+    }
+
+    private static void ResizeDropdownToFit(TMP_Dropdown dropdown, float minWidth, float sidePadding)
+    {
+        if (dropdown == null) return;
+
+        // Determine the longest option text
+        float maxPreferred = 0f;
+        TMP_Text measure = dropdown.captionText != null ? dropdown.captionText : dropdown.itemText;
+        if (measure == null) return;
+
+        // Use current font settings to measure preferred width for each option
+        foreach (var opt in dropdown.options)
+        {
+            if (string.IsNullOrEmpty(opt.text)) continue;
+            var size = measure.GetPreferredValues(opt.text);
+            maxPreferred = Mathf.Max(maxPreferred, size.x);
+        }
+
+        // Also ensure current caption text fits (in case it has prefix/icon etc.)
+        if (dropdown.captionText != null && !string.IsNullOrEmpty(dropdown.captionText.text))
+        {
+            var size = dropdown.captionText.GetPreferredValues(dropdown.captionText.text);
+            maxPreferred = Mathf.Max(maxPreferred, size.x);
+        }
+
+        // Apply width with padding and a minimum
+        float targetWidth = Mathf.Max(minWidth, maxPreferred + sidePadding);
+
+        // Resize the collapsed dropdown control (keep existing anchors; we'll position it relative to the label)
+        var rt = dropdown.GetComponent<RectTransform>();
+        if (rt != null)
+        {
+            var sz = rt.sizeDelta;
+            sz.x = targetWidth;
+            rt.sizeDelta = sz;
+        }
+
+        // Ensure the caption label stretches to the dropdown width
+        if (dropdown.captionText != null)
+        {
+            var labelRt = dropdown.captionText.GetComponent<RectTransform>();
+            if (labelRt != null)
+            {
+                labelRt.anchorMin = new Vector2(0, 0);
+                labelRt.anchorMax = new Vector2(1, 1);
+                labelRt.offsetMin = new Vector2(10f, 0f); // small left padding
+                labelRt.offsetMax = new Vector2(-30f, 0f); // leave room for arrow
+            }
+        }
+
+        // Resize the dropdown template (the expanded list) to match width
+        var template = dropdown.template; // RectTransform
+        if (template != null)
+        {
+            var tSz = template.sizeDelta;
+            tSz.x = targetWidth;
+            template.sizeDelta = tSz;
+
+            // Try to also resize the viewport/content rects if present
+            // Common hierarchy: Template (RectTransform) -> Viewport -> Content -> Item
+            // We don't rely on names; sizes generally stretch from template, but ensure item label stretches.
+        }
+
+        // Ensure the item label (each option) also stretches properly and add space for checkmark
+        if (dropdown.itemText != null)
+        {
+            var itemLabelRt = dropdown.itemText.GetComponent<RectTransform>();
+            if (itemLabelRt != null)
+            {
+                itemLabelRt.anchorMin = new Vector2(0, 0);
+                itemLabelRt.anchorMax = new Vector2(1, 1);
+                itemLabelRt.offsetMin = new Vector2(24f, 0f); // more left padding for checkmark icon
+                itemLabelRt.offsetMax = new Vector2(-40f, 0f); // more right padding for scrollbar/arrow
+            }
+        }
+
+        // Try to pad the item checkmark if present
+        var item = dropdown.itemText != null ? dropdown.itemText.transform.parent as RectTransform : null;
+        if (item != null)
+        {
+            // Expected children: Item Background, Item Checkmark, Item Label
+            for (int i = 0; i < item.childCount; i++)
+            {
+                var child = item.GetChild(i) as RectTransform;
+                if (child == null) continue;
+                if (child.name.ToLower().Contains("checkmark"))
+                {
+                    // Nudge checkmark a bit to the left
+                    var pos = child.anchoredPosition;
+                    pos.x = Mathf.Min(pos.x, 10f);
+                    child.anchoredPosition = pos;
+                }
+            }
         }
     }
 
@@ -1085,12 +1232,31 @@ if (currentPlayers < minPlayers)
     public override void OnMasterClientSwitched(Player newMasterClient)
     {
         Debug.Log($"[LobbyManager] New host: {newMasterClient.NickName}");
+
+        // If we became the host, ensure we are marked ready
+        if (newMasterClient == PhotonNetwork.LocalPlayer)
+        {
+            SetLocalReady(true);
+        }
     
         // Update UI (kick buttons visibility changes)
         if (PhotonNetwork.InRoom)
         {
-        UpdateRoomUI();
+            UpdateRoomUI();
         }
+    }
+
+    public override void OnJoinedRoom()
+    {
+        base.OnJoinedRoom();
+        // If we are the host upon join, mark ready immediately
+        if (PhotonNetwork.IsMasterClient)
+        {
+            SetLocalReady(true);
+        }
+        // Ensure room UI is shown (Dropdown placed under label)
+        ShowRoomPanel();
+        UpdateRoomUI();
     }
     
     /// <summary>

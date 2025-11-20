@@ -395,7 +395,7 @@ public class CardDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         if (!showAttackDamage || attackDamageText == null) return;
 
-        // Find a PlayCardButton to obtain damage info and indices
+        // Use the CORRECT ANSWER'S damage for the current question for ALL cards in the set.
         var pcb = FindObjectOfType<PlayCardButton>();
         var om = FindObjectOfType<OutputManager>();
         if (pcb == null || om == null)
@@ -406,30 +406,11 @@ public class CardDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         }
 
         int questionIndex = om.counter;
+        // The PlayCardButton.counter tracks the current answer element within the question.
+        // We want every card to display the damage tied to that element, not its own index.
+        int currentAnswerElement = Mathf.Max(0, pcb.counter);
 
-        // Determine this card's answer index within the current set by matching name
-        int answerIndex = -1;
-        var cm = cardManager != null ? cardManager : FindObjectOfType<CardManager>();
-        if (cm != null && cm.cardDisplayContainer != null && cm.counter >= 0 && cm.counter < cm.cardDisplayContainer.Count)
-        {
-            var displays = cm.cardDisplayContainer[cm.counter].cardDisplay;
-            for (int i = 0; i < displays.Count; i++)
-            {
-                if (displays[i] == this)
-                {
-                    answerIndex = i;
-                    break;
-                }
-            }
-        }
-
-        if (answerIndex < 0)
-        {
-            attackDamageText.text = string.Empty;
-            return;
-        }
-
-        float damage = pcb.GetCorrectAnswerDamage(questionIndex, answerIndex);
+        float damage = pcb.GetCorrectAnswerDamage(questionIndex, currentAnswerElement);
         if (damage <= 0.01f)
         {
             attackDamageText.text = string.Empty;
