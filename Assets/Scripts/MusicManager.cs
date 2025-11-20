@@ -117,6 +117,19 @@ public class MusicManager : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
     }
     
+    [Header("Auto Scene Music Switching")]
+    [Tooltip("Automatically switch music based on scene name when a new scene loads.")]
+    [SerializeField] private bool autoSwitchOnSceneLoaded = true;
+
+    [Tooltip("Scenes that should use the menu music. Other scenes will default to battle music unless specified otherwise.")]
+    [SerializeField] private string[] menuScenes = new string[] { "MainMenu", "LevelSelect", "LoginScene" };
+
+    [Tooltip("Optional: Explicit scenes that should use battle music. Leave empty to treat all non-menu scenes as battle scenes.")]
+    [SerializeField] private string[] battleScenes = new string[] { "Singleplayer", "TutorialLevel" };
+
+    // When true, ignore any attempt to play menu music (e.g., from UI) while in gameplay scenes
+    private bool gameplayMusicLock = false;
+
     private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
     {
         // Ensure the music source is routed to the correct mixer group after a scene change
@@ -130,6 +143,35 @@ public class MusicManager : MonoBehaviour
             // Force immediate volume update
             SettingsManager.Instance.ApplyVolumeSettings();
         }
+
+        // Auto-switch music based on scene name
+        if (autoSwitchOnSceneLoaded)
+        {
+            string sceneName = scene.name;
+            gameplayMusicLock = !IsMenuSceneName(sceneName);
+
+            if (IsMenuSceneName(sceneName))
+            {
+                // Ensure menu music is playing only in these menu scenes
+                PlayMenuMusicIfNotPlaying();
+            }
+            else
+            {
+                // For all non-menu scenes, prefer battle music
+                PlayBattleMusic();
+            }
+        }
+    }
+
+    public bool IsMenuSceneName(string sceneName)
+    {
+        if (menuScenes == null) return false;
+        for (int i = 0; i < menuScenes.Length; i++)
+        {
+            if (!string.IsNullOrEmpty(menuScenes[i]) && menuScenes[i] == sceneName)
+                return true;
+        }
+        return false;
     }
     
     /// <summary>
@@ -161,6 +203,11 @@ public class MusicManager : MonoBehaviour
     /// </summary>
     public void PlayMenuMusic()
     {
+        // Prevent switching to menu music when locked (i.e., during gameplay)
+        if (gameplayMusicLock) {
+            return;
+        }
+
         AudioClip musicToPlay = menuMusic != null ? menuMusic : battleMusic;
         if (musicToPlay == null)
         {
@@ -176,6 +223,11 @@ public class MusicManager : MonoBehaviour
     /// </summary>
     public void PlayMenuMusicIfNotPlaying()
     {
+        // Prevent switching to menu music when locked (i.e., during gameplay)
+        if (gameplayMusicLock) {
+            return;
+        }
+
         AudioClip musicToPlay = menuMusic != null ? menuMusic : battleMusic;
         if (musicToPlay == null)
         {
@@ -241,6 +293,12 @@ public class MusicManager : MonoBehaviour
         }
 
         if (clip == null)
+        {
+            return;
+        }
+
+        // Defensive: Do not allow switching to menu music while locked (e.g., during gameplay)
+        if (gameplayMusicLock && menuMusic != null && clip == menuMusic)
         {
             return;
         }

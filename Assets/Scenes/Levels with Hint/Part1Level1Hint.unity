@@ -1296,7 +1296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01110038621cb094ca74b23bffe9b69e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!21 &148742994
+--- !u!21 &143939787
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
@@ -2163,24 +2163,28 @@ MonoBehaviour:
   customHints:
   - outputIndex: 0
     answerIndex: 0
-    hintText: A variable name cannot start with a special character (, _ . + ).
+    hintText: "String is a collection of characters and numbers. It must be enclosed
+      with double apostrophe ( \u201C ).\r"
   - outputIndex: 0
     answerIndex: 1
-    hintText: A variable name cannot have spaces and must use naming conventions
-      (camelCase, PascalCase, snake_case).
+    hintText: "String is a collection of characters and numbers. It must be enclosed
+      with double apostrophe ( \u201C )."
   - outputIndex: 0
     answerIndex: 2
-    hintText: A variable name cannot have spaces and must use naming conventions
-      (camelCase, PascalCase, snake_case).
+    hintText: "String is a collection of characters and numbers. It must be enclosed
+      with double apostrophe ( \u201C )."
   - outputIndex: 0
     answerIndex: 3
-    hintText: Call the name of the variable to get the output.
+    hintText: Integer or int is a data type used for whole numbers, both positive
+      and negative.
   - outputIndex: 0
     answerIndex: 4
-    hintText: Call the name of the variable to get the output.
+    hintText: "Float data type is used when decimal points are involved, it is suffixed
+      by the character \u201Cf\u201D.\r"
   - outputIndex: 0
     answerIndex: 5
-    hintText: Call the name of the variable to get the output.
+    hintText: "Double data type is used when decimal points are involved, can store
+      much more decimal points than float and is suffixed by the character \u201Cd\u201D."
   positionOnAnswers: 1
   positionOffset: {x: 0, y: 0}
   parentToAnswers: 0
@@ -3610,7 +3614,7 @@ GameObject:
   - component: {fileID: 325137387}
   m_Layer: 5
   m_Name: Answer5
-  m_TagString: Untagged
+  m_TagString: CorrectAnswer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3631,8 +3635,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 159, y: -167}
-  m_SizeDelta: {x: 331.9045, y: 59.9265}
+  m_AnchoredPosition: {x: 124, y: -169}
+  m_SizeDelta: {x: 331.9045, y: 50.8558}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &325137387
 MonoBehaviour:
@@ -3849,7 +3853,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 148742994}
+  m_Material: {fileID: 1605978058}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -4198,100 +4202,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 363413662}
   m_CullTransparentMesh: 1
---- !u!21 &398697884
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Shapes2D Material
-  m_Shader: {fileID: 4800000, guid: 44f74e30da9814584b2fdcdbe799e51a, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - FILL_SOLID_COLOR
-  - RECTANGLE
-  m_InvalidKeywords:
-  - _EMISSION
-  m_LightmapFlags: 1
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _BumpMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailAlbedoMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailMask:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailNormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _EmissionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MetallicGlossMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _OcclusionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _ParallaxMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _BumpScale: 1
-    - _ColorMask: 15
-    - _Cutoff: 0.5
-    - _DetailNormalMapScale: 1
-    - _DstBlend: 0
-    - _GlossMapScale: 1
-    - _Glossiness: 0.5
-    - _GlossyReflections: 1
-    - _Metallic: 0
-    - _Mode: 0
-    - _OcclusionStrength: 1
-    - _Parallax: 0.02
-    - _Shapes2D_DstAlpha: 1
-    - _Shapes2D_DstBlend: 10
-    - _Shapes2D_SrcAlpha: 1
-    - _Shapes2D_SrcBlend: 1
-    - _SmoothnessTextureChannel: 0
-    - _SpecularHighlights: 1
-    - _SrcBlend: 1
-    - _Stencil: 0
-    - _StencilComp: 8
-    - _StencilOp: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
-    - _UVSec: 0
-    - _ZWrite: 1
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1 &414734824
 GameObject:
   m_ObjectHideFlags: 0
@@ -4469,7 +4379,7 @@ MonoBehaviour:
   codes:
   - {fileID: 1697476527}
   outputs:
-  - {fileID: 300612677}
+  - {fileID: 1546990513}
   answerList:
   - {fileID: 1463008154}
   answerListContainer:
@@ -4880,6 +4790,9 @@ MonoBehaviour:
   sharedMaxHealth: 10
   sharedHealthBar: {fileID: 792594379}
   sharedHealthText: {fileID: 2129822701}
+  easySharedHP: 10
+  normalSharedHP: 5
+  hardSharedHP: 3
   characterDisplayPosition: {fileID: 1634719850}
   _characterSlideSpeed: 5
   offScreenLeft: {x: 0, y: 0, z: 0}
@@ -5669,7 +5582,7 @@ GameObject:
   - component: {fileID: 678052701}
   m_Layer: 5
   m_Name: Answer6
-  m_TagString: Untagged
+  m_TagString: CorrectAnswer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5690,8 +5603,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 154, y: -228}
-  m_SizeDelta: {x: 234.7739, y: 65.2033}
+  m_AnchoredPosition: {x: 78, y: -228}
+  m_SizeDelta: {x: 234.7739, y: 46.2797}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &678052701
 MonoBehaviour:
@@ -5776,7 +5689,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 5.7161865, z: 0, w: 0}
+  m_margin: {x: 0, y: 0.8753052, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5839,6 +5752,14 @@ MonoBehaviour:
   defeatMusic: {fileID: 8300000, guid: 126a511c47e6e4f4f8b214bfc7b7c092, type: 3}
   menuMusic: {fileID: 0}
   musicSource: {fileID: 1384792399}
+  autoSwitchOnSceneLoaded: 1
+  menuScenes:
+  - MainMenu
+  - LevelSelect
+  - LoginScene
+  battleScenes:
+  - Singleplayer
+  - TutorialLevel
 --- !u!1 &724597485
 GameObject:
   m_ObjectHideFlags: 0
@@ -5852,7 +5773,7 @@ GameObject:
   - component: {fileID: 724597487}
   m_Layer: 5
   m_Name: Answer4
-  m_TagString: Untagged
+  m_TagString: CorrectAnswer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5873,8 +5794,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 151, y: -106}
-  m_SizeDelta: {x: 233.8099, y: 60.1382}
+  m_AnchoredPosition: {x: 83, y: -108.59161}
+  m_SizeDelta: {x: 233.8099, y: 54.9549}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &724597487
 MonoBehaviour:
@@ -8262,7 +8183,7 @@ MonoBehaviour:
   attackEffectPrefab: {fileID: 0}
   attackEffectOffset: {x: 0, y: 0, z: 0}
   swordSoundEffect: {fileID: 8300000, guid: e1dcc8bd7853582459730fe81a6c4532, type: 3}
-  highDamageSoundEffect: {fileID: 0}
+  highDamageSoundEffect: {fileID: 8300000, guid: 70756330514713746987dd4b41151aee, type: 3}
   audioSource: {fileID: 0}
   bloodSplatterEffect: {fileID: 6529726498670662938, guid: 79420aecbb47ac9469c17a0393ed3602, type: 3}
   highDamageEffect: {fileID: 1564481908025290153, guid: e6905fa69182e884e9eef3ae6f696631, type: 3}
@@ -9170,7 +9091,7 @@ GameObject:
   - component: {fileID: 1034603712}
   m_Layer: 5
   m_Name: Answer1
-  m_TagString: Untagged
+  m_TagString: CorrectAnswer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9191,8 +9112,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -124, y: 119}
-  m_SizeDelta: {x: 226.7552, y: 53.6206}
+  m_AnchoredPosition: {x: -207, y: 121}
+  m_SizeDelta: {x: 226.7552, y: 48.9022}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1034603712
 MonoBehaviour:
@@ -10262,7 +10183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 398697884}
+  m_Material: {fileID: 143939787}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -12442,7 +12363,7 @@ GameObject:
   - component: {fileID: 1571272284}
   m_Layer: 5
   m_Name: Answer3
-  m_TagString: Untagged
+  m_TagString: CorrectAnswer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12463,8 +12384,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -129, y: 2}
-  m_SizeDelta: {x: 230.6, y: 55.7195}
+  m_AnchoredPosition: {x: -205, y: 5}
+  m_SizeDelta: {x: 230.6, y: 47.9447}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1571272284
 MonoBehaviour:
@@ -12563,6 +12484,100 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1571272282}
   m_CullTransparentMesh: 1
+--- !u!21 &1605978058
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shapes2D Material
+  m_Shader: {fileID: 4800000, guid: 44f74e30da9814584b2fdcdbe799e51a, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - FILL_SOLID_COLOR
+  - RECTANGLE
+  m_InvalidKeywords:
+  - _EMISSION
+  m_LightmapFlags: 1
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 3000
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _BumpScale: 1
+    - _ColorMask: 15
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _Shapes2D_DstAlpha: 1
+    - _Shapes2D_DstBlend: 10
+    - _Shapes2D_SrcAlpha: 1
+    - _Shapes2D_SrcBlend: 1
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _UVSec: 0
+    - _ZWrite: 1
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1 &1608588065
 GameObject:
   m_ObjectHideFlags: 0
@@ -13978,8 +13993,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "public class Main\n{\n\tpublic static void main(String[] args)\n\t{\n\t\tString
-    ______________ = \"Username\";\n\t\tString ______________ = \"User Password\";\n\t\tString
-    ______________ = \"User Email\";\n\n\t\tSystem.out.println(______________);\n\t\tSystem.out.println(______________);\n\t\tSystem.out.println(______________);\n\t}\n}"
+    ________ = \"Username\";\n\t\tString ___________ = \"User Password\";\n\t\tString
+    ________ = \"User Email\";\n\n\t\tSystem.out.println(_________);\n\t\tSystem.out.println(____________);\n\t\tSystem.out.println(_________);\n\t}\n}"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -15987,7 +16002,7 @@ GameObject:
   - component: {fileID: 2052141134}
   m_Layer: 5
   m_Name: Answer2
-  m_TagString: Untagged
+  m_TagString: CorrectAnswer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16008,8 +16023,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -125, y: 59}
-  m_SizeDelta: {x: 322.2651, y: 61.3233}
+  m_AnchoredPosition: {x: -163, y: 63}
+  m_SizeDelta: {x: 322.2651, y: 50.9568}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2052141134
 MonoBehaviour:

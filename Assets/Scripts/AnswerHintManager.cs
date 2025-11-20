@@ -219,8 +219,8 @@ public class AnswerHintManager : MonoBehaviour
         
         TMPro.TextMeshProUGUI text = textObj.AddComponent<TMPro.TextMeshProUGUI>();
         text.text = "?";
-        text.color = Color.white;
-        text.fontSize = 24;
+        text.color = Color.yellow;
+        text.fontSize = 36;
         text.alignment = TMPro.TextAlignmentOptions.Center;
         
         return buttonObj;

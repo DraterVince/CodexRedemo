@@ -207,11 +207,12 @@ public class HintButton : MonoBehaviour
         // Position tooltip
         PositionTooltip();
         
-        // Set text
+        // Set text and enforce tooltip text color to match card hover tooltip style (yellow)
         TextMeshProUGUI textComponent = currentTooltip.GetComponentInChildren<TextMeshProUGUI>();
         if (textComponent != null)
         {
             textComponent.text = hintText;
+            textComponent.color = tooltipTextColor; // ensure yellow
         }
         
         // Set this as the active hint button

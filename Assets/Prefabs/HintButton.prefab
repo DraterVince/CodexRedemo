@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4270389253402148216}
   - component: {fileID: 8259500003072999744}
   - component: {fileID: 6458679042744804847}
+  - component: {fileID: -5604976072916708467}
   m_Layer: 5
   m_Name: HintButton
   m_TagString: Untagged
@@ -37,8 +38,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -122.6178, y: 93.47296}
-  m_SizeDelta: {x: 390.3945, y: 44.9459}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 47.2136, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &173897822194383351
 CanvasRenderer:
@@ -202,7 +203,35 @@ MonoBehaviour:
   tooltipOffset: {x: 0, y: 20}
   appearAboveButton: 1
   tooltipBackgroundColor: {r: 0.1, g: 0.1, b: 0.1, a: 0.95}
-  tooltipTextColor: {r: 1, g: 1, b: 1, a: 1}
+  tooltipTextColor: {r: 1, g: 1, b: 0, a: 1}
   fontSize: 18
   padding: 15
   dismissOnPanelMinimize: 1
+--- !u!114 &-5604976072916708467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5289688557447431761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebffd1517acbaf442b7a6d7bb96ab463, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resolveMode: 2
+  searchScope: 2
+  targetExactName: Answer1
+  targetNameContains: CorrectAnswer
+  targetTag: CorrectAnswer
+  deriveFromSelfName: 1
+  replacePrefix: 1
+  selfPrefix: Hint_
+  targetPrefix: Answer
+  replaceSuffix: 0
+  selfSuffix: 
+  targetSuffix: 
+  container: {fileID: 0}
+  matchWidth: 1
+  matchHeight: 1
+  runEveryFrame: 1

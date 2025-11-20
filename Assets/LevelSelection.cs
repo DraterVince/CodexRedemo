@@ -47,6 +47,12 @@ public class LevelSelection : MonoBehaviour
             usernameText.text = "Welcome, " + username + "!";
         }
         
+        // Ensure Level Select uses menu music
+        if (MusicManager.Instance != null)
+        {
+            MusicManager.Instance.PlayMenuMusicIfNotPlaying();
+        }
+        
         // Tutorial level is at index 5, Level 1 is at index 6
         int levelAt = PlayerPrefs.GetInt("levelAt", 6);
 
@@ -137,6 +143,12 @@ public class LevelSelection : MonoBehaviour
             int sceneIndex = selectedLevel + 6;
        
             // Use character selection if enabled
+            // Switch to battle music before loading the gameplay scene for a seamless transition
+            if (MusicManager.Instance != null)
+            {
+                MusicManager.Instance.PlayBattleMusic();
+            }
+
             if (enableCharacterSelection && characterSelectionManager != null)
             {
                 characterSelectionManager.PrepareToStartLevel(sceneIndex);

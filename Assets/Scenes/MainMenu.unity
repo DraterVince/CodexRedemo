@@ -777,11 +777,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03f0debccdd99a04cab894a527852123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  battleMusic: {fileID: 0}
+  battleMusic: {fileID: 8300000, guid: 018f6e35e69ee184f91a0be52422b3dc, type: 3}
   victoryMusic: {fileID: 0}
   defeatMusic: {fileID: 0}
   menuMusic: {fileID: 8300000, guid: 0218865ebbdf37a47b340deb7f753a5b, type: 3}
   musicSource: {fileID: 0}
+  autoSwitchOnSceneLoaded: 1
+  menuScenes:
+  - MainMenu
+  - LevelSelect
+  - Singleplayer
+  battleScenes:
+  - Part1Level1Hint
+  - Part1Level2Hint
+  - Part1Level3Hint
+  - Part1Level4Hint
 --- !u!4 &223492703
 Transform:
   m_ObjectHideFlags: 0

@@ -14575,7 +14575,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -862, y: -343}
+  m_AnchoredPosition: {x: -858, y: -333}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &301865232
@@ -28629,8 +28629,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -159.17, y: -165.5}
-  m_SizeDelta: {x: 330.4359, y: 330.4359}
+  m_AnchoredPosition: {x: -66.046, y: -84.539}
+  m_SizeDelta: {x: 132.0915, y: 169.0771}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &897529630
 MonoBehaviour:
@@ -61689,6 +61689,16 @@ MonoBehaviour:
   defeatMusic: {fileID: 0}
   menuMusic: {fileID: 8300000, guid: 0218865ebbdf37a47b340deb7f753a5b, type: 3}
   musicSource: {fileID: 0}
+  autoSwitchOnSceneLoaded: 1
+  menuScenes:
+  - MainMenu
+  - LevelSelect
+  - Singleplayer
+  battleScenes:
+  - Part1Level1Hint
+  - Part1Level2Hint
+  - Part1Level3Hint
+  - Part1Level4Hint
 --- !u!1 &1973387867
 GameObject:
   m_ObjectHideFlags: 0
