@@ -780,7 +780,7 @@ enemyHP.text = enemyHealthAmount[enemyManager.counter].ToString() + " / " + enem
     /// <summary>
     /// Get damage value for a correct answer at the specified index
     /// </summary>
-    private float GetCorrectAnswerDamage(int questionIndex, int answerIndex)
+    public float GetCorrectAnswerDamage(int questionIndex, int answerIndex)
     {
         if (questionIndex < 0 || questionIndex >= correctAnswersContainer.Count)
         {

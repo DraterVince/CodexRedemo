@@ -2,10 +2,38 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Rendering;
 
 public class CardDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerMoveHandler
 {
     public CardManager cardManager;
+
+    private void Awake()
+    {
+        // Force consistent damage layout/color regardless of scene/prefab overrides
+        ForceDamageTopRightDefaults();
+        EnsureSubtitleText();
+        EnsureDamageText();
+        // Apply layout once more in case a preassigned text existed
+        if (enforceDamageTextLayout)
+        {
+            ApplyDamageTextLayout();
+        }
+    }
+
+    private void ForceDamageTopRightDefaults()
+    {
+        // Ensure damage label sits at top-right and is red
+        damageTextAnchorMin = new Vector2(1f, 1f);
+        damageTextAnchorMax = new Vector2(1f, 1f);
+        damageTextPivot = new Vector2(1f, 1f);
+        damageTextOffsetMin = new Vector2(-160f, -72f);
+        damageTextOffsetMax = new Vector2(-16f, -16f);
+        damageTextAlignment = TextAlignmentOptions.Right;
+        damageTextFontSize = 40;
+        attackDamageColor = Color.red;
+        enforceDamageTextLayout = true;
+    }
 
     public string cardName;
     public Image cardDesign;
@@ -25,6 +53,40 @@ public class CardDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     [SerializeField] private bool followPointer = true;
 
     private Item assignedItem;
+
+    [Header("Subtitle Display")]
+    [SerializeField] private bool showSubtitle = false;
+    [SerializeField] private TextMeshProUGUI subtitleText; // optional manual assign
+    [SerializeField] private bool autoCreateSubtitleText = true;
+    [SerializeField] private Vector2 subtitleAnchorMin = new Vector2(1f, 1f);   // top-right
+    [SerializeField] private Vector2 subtitleAnchorMax = new Vector2(1f, 1f);   // top-right
+    [SerializeField] private Vector2 subtitlePivot = new Vector2(1f, 1f);       // top-right
+    [SerializeField] private Vector2 subtitleOffsetMin = new Vector2(-300f, -96f); // width ~284, height ~64
+    [SerializeField] private Vector2 subtitleOffsetMax = new Vector2(-16f, -16f);  // inset 16px from top-right
+    [SerializeField] private int subtitleFontSize = 40;
+    [SerializeField] private TextAlignmentOptions subtitleAlignment = TextAlignmentOptions.Right;
+    [SerializeField] private Color subtitleColor = Color.white;
+    [Tooltip("If empty, defaults to assigned item's cardName.")]
+    [SerializeField] private string subtitleFallback = string.Empty;
+
+    [Header("Attack Damage Display")]
+    [SerializeField] private bool showAttackDamage = true;
+    [SerializeField] private TextMeshProUGUI attackDamageText; // optional manual assign
+    [SerializeField] private bool autoCreateDamageText = true;
+    [SerializeField] private Vector2 damageTextAnchorMin = new Vector2(1f, 1f);   // top-right
+    [SerializeField] private Vector2 damageTextAnchorMax = new Vector2(1f, 1f);   // top-right
+    [SerializeField] private Vector2 damageTextPivot = new Vector2(1f, 1f);       // top-right
+    [SerializeField] private Vector2 damageTextOffsetMin = new Vector2(-160f, -72f); // wider and taller box
+    [SerializeField] private Vector2 damageTextOffsetMax = new Vector2(-16f, -16f);  // inset 16px from top-right
+    [SerializeField] private int damageTextFontSize = 40;
+    [SerializeField] private TextAlignmentOptions damageTextAlignment = TextAlignmentOptions.Right;
+    [SerializeField] private bool enforceDamageTextLayout = true; // reapply anchors/offsets even if a manual reference exists
+    [Tooltip("Optional: A prefix/suffix for the displayed damage, e.g., 'DMG: ' or 'x'. Leave empty for raw number.")]
+    [SerializeField] private string attackDamagePrefix = "DMG: ";
+    [SerializeField] private string attackDamageSuffix = "";
+    [Tooltip("Color of the damage text.")]
+    [SerializeField] private Color attackDamageColor = Color.red; // red for damage
+
     private GameObject activeHintTooltip;
     private RectTransform activeHintTooltipRect;
     private TextMeshProUGUI activeHintTooltipText;
@@ -32,6 +94,14 @@ public class CardDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     private void Update()
     {
         gameObject.name = cardName;
+        if (showSubtitle)
+        {
+            UpdateSubtitleDisplay();
+        }
+        if (showAttackDamage)
+        {
+            UpdateAttackDamageDisplay();
+        }
     }
 
     /// <summary>
@@ -41,6 +111,8 @@ public class CardDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public void SetAssignedItem(Item item)
     {
         assignedItem = item;
+        UpdateSubtitleDisplay();
+        UpdateAttackDamageDisplay();
     }
 
     /// <summary>
@@ -215,6 +287,157 @@ public class CardDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         }
 
         return hintTooltipCanvas;
+    }
+
+    private void EnsureSubtitleText()
+    {
+        if (!showSubtitle) return;
+        if (subtitleText != null) return;
+        if (!autoCreateSubtitleText) return;
+
+        var go = new GameObject("SubtitleText");
+        go.transform.SetParent(transform, false);
+
+        var rt = go.AddComponent<RectTransform>();
+        rt.anchorMin = subtitleAnchorMin;
+        rt.anchorMax = subtitleAnchorMax;
+        rt.pivot = subtitlePivot;
+        rt.offsetMin = subtitleOffsetMin;
+        rt.offsetMax = subtitleOffsetMax;
+
+        var tmp = go.AddComponent<TextMeshProUGUI>();
+        tmp.text = string.Empty;
+        tmp.fontSize = subtitleFontSize;
+        tmp.alignment = subtitleAlignment;
+        tmp.color = subtitleColor;
+        tmp.raycastTarget = false;
+
+        subtitleText = tmp;
+    }
+
+    private void UpdateSubtitleDisplay()
+    {
+        if (!showSubtitle || subtitleText == null) return;
+        string value = subtitleFallback;
+        if (assignedItem != null && !string.IsNullOrWhiteSpace(assignedItem.cardName))
+        {
+            value = assignedItem.cardName;
+        }
+        subtitleText.text = value ?? string.Empty;
+    }
+
+    private void EnsureDamageText()
+    {
+        if (!showAttackDamage) return;
+
+        // If text already exists (assigned via inspector), still optionally enforce layout
+        if (attackDamageText != null)
+        {
+            if (enforceDamageTextLayout)
+            {
+                ApplyDamageTextLayout();
+            }
+            return;
+        }
+
+        // If no text exists and we shouldn't auto-create, still optionally enforce (noop if null)
+        if (!autoCreateDamageText)
+        {
+            if (enforceDamageTextLayout)
+            {
+                ApplyDamageTextLayout();
+            }
+            return;
+        }
+
+        // Build a child TMP text under this card
+        var go = new GameObject("AttackDamageText");
+        go.transform.SetParent(transform, false);
+
+        var rt = go.AddComponent<RectTransform>();
+        rt.anchorMin = damageTextAnchorMin;
+        rt.anchorMax = damageTextAnchorMax;
+        rt.pivot = damageTextPivot;
+        rt.offsetMin = damageTextOffsetMin;
+        rt.offsetMax = damageTextOffsetMax;
+
+        var tmp = go.AddComponent<TextMeshProUGUI>();
+        tmp.text = string.Empty;
+        tmp.fontSize = damageTextFontSize;
+        tmp.alignment = damageTextAlignment;
+        tmp.color = attackDamageColor;
+        tmp.raycastTarget = false;
+
+        attackDamageText = tmp;
+
+        // Always enforce layout so prefabs/scenes with overridden anchors are corrected
+        if (enforceDamageTextLayout)
+        {
+            ApplyDamageTextLayout();
+        }
+    }
+
+    private void ApplyDamageTextLayout()
+    {
+        if (attackDamageText == null) return;
+        var rt = attackDamageText.rectTransform;
+        rt.anchorMin = damageTextAnchorMin;
+        rt.anchorMax = damageTextAnchorMax;
+        rt.pivot = damageTextPivot;
+        rt.offsetMin = damageTextOffsetMin;
+        rt.offsetMax = damageTextOffsetMax;
+        attackDamageText.alignment = damageTextAlignment;
+        attackDamageText.fontSize = damageTextFontSize;
+        attackDamageText.color = attackDamageColor;
+    }
+
+    private void UpdateAttackDamageDisplay()
+    {
+        if (!showAttackDamage || attackDamageText == null) return;
+
+        // Find a PlayCardButton to obtain damage info and indices
+        var pcb = FindObjectOfType<PlayCardButton>();
+        var om = FindObjectOfType<OutputManager>();
+        if (pcb == null || om == null)
+        {
+            attackDamageText.text = string.Empty;
+            if (enforceDamageTextLayout) ApplyDamageTextLayout();
+            return;
+        }
+
+        int questionIndex = om.counter;
+
+        // Determine this card's answer index within the current set by matching name
+        int answerIndex = -1;
+        var cm = cardManager != null ? cardManager : FindObjectOfType<CardManager>();
+        if (cm != null && cm.cardDisplayContainer != null && cm.counter >= 0 && cm.counter < cm.cardDisplayContainer.Count)
+        {
+            var displays = cm.cardDisplayContainer[cm.counter].cardDisplay;
+            for (int i = 0; i < displays.Count; i++)
+            {
+                if (displays[i] == this)
+                {
+                    answerIndex = i;
+                    break;
+                }
+            }
+        }
+
+        if (answerIndex < 0)
+        {
+            attackDamageText.text = string.Empty;
+            return;
+        }
+
+        float damage = pcb.GetCorrectAnswerDamage(questionIndex, answerIndex);
+        if (damage <= 0.01f)
+        {
+            attackDamageText.text = string.Empty;
+            return;
+        }
+
+        attackDamageText.color = attackDamageColor;
+        attackDamageText.text = string.Concat(attackDamagePrefix, damage.ToString("0.#"), attackDamageSuffix);
     }
 
     private GameObject CreateDefaultHintTooltip(Canvas parentCanvas)
