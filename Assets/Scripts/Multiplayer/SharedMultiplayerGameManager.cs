@@ -1364,7 +1364,7 @@ Log($"RPC_SyncCardCounter - Setting counter to {newCounter}");
             {
                 currentTurnText.text = $"{currentPlayer.NickName}'s Turn";
  currentTurnText.gameObject.SetActive(true);
-       currentTurnText.color = Color.white;
+       currentTurnText.color = Color.blue;
 }
         
           if (yourTurnIndicator != null) yourTurnIndicator.SetActive(currentPlayer.IsLocal);
